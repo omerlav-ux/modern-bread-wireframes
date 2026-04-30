@@ -77,7 +77,7 @@ export default function CateringLandingPage() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden" style={{ minHeight: '70vh' }}>
         <div className="img-placeholder absolute inset-0 border-0" style={{ background: '#e8e8e8' }} />
-        <div className="relative max-w-[1440px] mx-auto px-8 py-32 flex flex-col items-center text-center">
+        <div className="relative max-w-[1440px] mx-auto px-6 py-32 flex flex-col items-center text-center">
           <p className="section-label mb-4">Modern bread & bagel Catering</p>
           <h1 className="font-semibold mb-5 max-w-3xl text-wire-black" style={{ fontSize: 56, lineHeight: 1.15 }}>
             A taste worth celebrating together
@@ -95,7 +95,7 @@ export default function CateringLandingPage() {
 
       {/* ── Our catering boxes (feature highlights) ── */}
       <section className="py-20">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h2 className="text-3xl font-semibold text-center mb-12">Our catering boxes</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {cateringBoxFeatures.map((f) => (
@@ -110,7 +110,7 @@ export default function CateringLandingPage() {
 
       {/* ── How does it work? ── */}
       <section className="py-20 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h2 className="text-3xl font-semibold text-center mb-14">How does it work?</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-5xl mx-auto">
             {howItWorks.map((step) => (
@@ -128,7 +128,7 @@ export default function CateringLandingPage() {
           Mirrors the Levain catering reference: large image cards with no text overlays,
           pagination dots below to indicate scroll position. */}
       <section className="py-20">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex items-end justify-between mb-10 gap-6">
             <div>
               <h2 className="text-3xl font-semibold">Perfect for every occasion</h2>
@@ -143,7 +143,7 @@ export default function CateringLandingPage() {
         {/* Horizontal scroll carousel. Three cards visible per "page" on desktop,
             scroll for the rest. snap-x makes cards lock to position. */}
         <div className="overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar">
-          <div className="flex gap-3 px-8 max-w-[1440px] mx-auto pb-2" style={{ minWidth: 'max-content' }}>
+          <div className="flex gap-3 px-6 max-w-[1440px] mx-auto pb-2" style={{ minWidth: 'max-content' }}>
             {occasionGallery.map((i) => (
               <div
                 key={i}
@@ -157,7 +157,7 @@ export default function CateringLandingPage() {
 
         {/* Pagination dots - visual indicator that there's more to scroll to.
             Static for the wireframe; functional on a real implementation. */}
-        <div className="max-w-[1440px] mx-auto px-8 mt-8 flex items-center justify-center gap-2">
+        <div className="max-w-[1440px] mx-auto px-6 mt-8 flex items-center justify-center gap-2">
           {[0, 1].map((i) => (
             <span
               key={i}
@@ -169,7 +169,7 @@ export default function CateringLandingPage() {
         </div>
 
         {/* Mobile-friendly Place an order CTA below the carousel */}
-        <div className="max-w-[1440px] mx-auto px-8 mt-6 sm:hidden">
+        <div className="max-w-[1440px] mx-auto px-6 mt-6 sm:hidden">
           <Link to="/catering/order" className="btn-primary w-full inline-flex items-center justify-center">
             Place catering order
           </Link>
@@ -178,7 +178,7 @@ export default function CateringLandingPage() {
 
       {/* ── Catering FAQs (full content width to match the rest of the page) ── */}
       <section className="py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h2 className="text-3xl font-semibold mb-10">Catering FAQs</h2>
           <div>
             {faqs.map((faq) => (
@@ -199,7 +199,7 @@ export default function CateringLandingPage() {
       {/* ── Inline catering inquiry form - left: still-have-questions copy,
           right: form. Mirrors the contact page layout for visual consistency. */}
       <section className="py-16 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
             {/* Left - heading + supporting copy */}
             <div>

@@ -46,7 +46,7 @@ const pages = [
 
 export default function SiteIndex() {
   return (
-    <div className="min-h-screen bg-wire-bg py-16 px-8">
+    <div className="min-h-screen bg-wire-bg py-16 px-6">
       <div className="max-w-3xl mx-auto">
         <div className="mb-12">
           <p className="text-xs tracking-[0.15em] uppercase font-medium text-wire-mid mb-2">High-fidelity wireframes</p>

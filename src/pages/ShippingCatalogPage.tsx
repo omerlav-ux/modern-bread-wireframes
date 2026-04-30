@@ -247,7 +247,7 @@ export default function ShippingCatalogPage() {
 
       {/* Page header */}
       <div className="py-20 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl">Nationwide shipping</h1>
         </div>
       </div>
@@ -256,7 +256,7 @@ export default function ShippingCatalogPage() {
           Constrained to catalog width and given vertical breathing room so it
           reads as a floating scope indicator above the catalog, not a sitewide alert. */}
       {selectedState !== null && (
-        <div className="max-w-[1440px] mx-auto px-8 pt-8">
+        <div className="max-w-[1440px] mx-auto px-6 pt-8">
           <div className="bg-wire-ghost border border-wire-pale py-3 px-5 flex items-center justify-between text-sm">
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -277,7 +277,7 @@ export default function ShippingCatalogPage() {
         </div>
       )}
 
-      <div className="max-w-[1440px] mx-auto px-8 py-10">
+      <div className="max-w-[1440px] mx-auto px-6 py-10">
         <div className="flex gap-12">
           <SidebarFilters groups={filters} />
 

@@ -13,15 +13,15 @@ import ComesSayHello from '../components/global/ComesSayHello'
 // before launch - the slug-based pattern shown is illustrative.
 const TOAST_BASE = 'https://order.toasttab.com/online/modern-bread-bagel'
 const locations = [
-  { id: 'uws', region: 'new-york', name: 'Upper West Side', address: '472 Columbus Ave, New York, NY 10024', slug: 'upper-west-side', pickupUrl: `${TOAST_BASE}-upper-west-side` },
-  { id: 'ues', region: 'new-york', name: 'Upper East Side', address: '1427 3rd Ave, New York, NY 10028', slug: 'upper-east-side', pickupUrl: `${TOAST_BASE}-upper-east-side` },
-  { id: 'chelsea', region: 'new-york', name: 'Chelsea', address: '139 West 14th Street, New York, NY 10011', slug: 'chelsea', pickupUrl: `${TOAST_BASE}-chelsea` },
-  { id: 'midtown-east', region: 'new-york', name: 'Midtown East', address: '630 Lexington Ave, New York, NY 10022', slug: 'midtown-east', pickupUrl: `${TOAST_BASE}-midtown-east` },
-  { id: 'englewood', region: 'new-jersey', name: 'Good Food by Modern (Englewood)', address: '43 E Palisade Ave, Englewood, NJ 07631', slug: 'englewood', pickupUrl: `${TOAST_BASE}-englewood` },
-  { id: 'woodland-hills', region: 'california', name: 'Woodland Hills', address: '6256 Topanga Canyon Blvd, Woodland Hills, CA 91367', slug: 'woodland-hills', pickupUrl: `${TOAST_BASE}-woodland-hills` },
-  { id: 'santa-monica', region: 'california', name: 'Santa Monica', address: '1511c Montana Ave, Santa Monica, CA 90403', slug: 'santa-monica', pickupUrl: `${TOAST_BASE}-santa-monica` },
-  { id: 'beverly-hills', region: 'california', name: 'Beverly Hills', address: '260 N Beverly Dr, Beverly Hills, CA 90210', slug: 'beverly-hills', pickupUrl: `${TOAST_BASE}-beverly-hills` },
-  { id: 'silverlake', region: 'california', name: 'Silverlake', address: '1529 Griffith Park Boulevard, Los Angeles, CA 90026', slug: 'silverlake', pickupUrl: `${TOAST_BASE}-silverlake` },
+  { id: 'uws', region: 'new-york', name: 'Upper West Side', address: '472 Columbus Ave, New York, NY 10024', slug: 'upper-west-side', pickupUrl: `${TOAST_BASE}-upper-west-side`, hasDinner: false },
+  { id: 'ues', region: 'new-york', name: 'Upper East Side', address: '1427 3rd Ave, New York, NY 10028', slug: 'upper-east-side', pickupUrl: `${TOAST_BASE}-upper-east-side`, hasDinner: true },
+  { id: 'chelsea', region: 'new-york', name: 'Chelsea', address: '139 West 14th Street, New York, NY 10011', slug: 'chelsea', pickupUrl: `${TOAST_BASE}-chelsea`, hasDinner: false },
+  { id: 'midtown-east', region: 'new-york', name: 'Midtown East', address: '630 Lexington Ave, New York, NY 10022', slug: 'midtown-east', pickupUrl: `${TOAST_BASE}-midtown-east`, hasDinner: true },
+  { id: 'englewood', region: 'new-jersey', name: 'Good Food by Modern (Englewood)', address: '43 E Palisade Ave, Englewood, NJ 07631', slug: 'englewood', pickupUrl: `${TOAST_BASE}-englewood`, hasDinner: true },
+  { id: 'woodland-hills', region: 'california', name: 'Woodland Hills', address: '6256 Topanga Canyon Blvd, Woodland Hills, CA 91367', slug: 'woodland-hills', pickupUrl: `${TOAST_BASE}-woodland-hills`, hasDinner: false },
+  { id: 'santa-monica', region: 'california', name: 'Santa Monica', address: '1511c Montana Ave, Santa Monica, CA 90403', slug: 'santa-monica', pickupUrl: `${TOAST_BASE}-santa-monica`, hasDinner: false },
+  { id: 'beverly-hills', region: 'california', name: 'Beverly Hills', address: '260 N Beverly Dr, Beverly Hills, CA 90210', slug: 'beverly-hills', pickupUrl: `${TOAST_BASE}-beverly-hills`, hasDinner: false },
+  { id: 'silverlake', region: 'california', name: 'Silverlake', address: '1529 Griffith Park Boulevard, Los Angeles, CA 90026', slug: 'silverlake', pickupUrl: `${TOAST_BASE}-silverlake`, hasDinner: false },
 ]
 
 const tabs = ['All locations', 'New York', 'New Jersey', 'California']
@@ -53,7 +53,7 @@ export default function LocationsPage() {
       {/* Page header with ZIP / city search to find the closest venue.
           Wireframe-only: submit doesn't actually filter. */}
       <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold mb-6">Locations</h1>
           <p className="text-sm text-wire-dark mb-6 max-w-md">
             Find your nearest Modern. Enter a ZIP code or city to see the closest store.
@@ -84,7 +84,7 @@ export default function LocationsPage() {
 
       {/* Region tabs */}
       <div className="sticky top-14 z-20 bg-white border-b border-wire-pale">
-        <div className="max-w-[1440px] mx-auto px-8 flex gap-0">
+        <div className="max-w-[1440px] mx-auto px-6 flex gap-0">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -102,7 +102,7 @@ export default function LocationsPage() {
       </div>
 
       {/* Location cards by region */}
-      <div className="max-w-[1440px] mx-auto px-8 py-12">
+      <div className="max-w-[1440px] mx-auto px-6 py-12">
         {regions.map(({ key, label, locations: regionLocs }) => (
           <div
             key={key}
@@ -120,7 +120,14 @@ export default function LocationsPage() {
                       location detail page so the whole card feels clickable.
                       The buttons below are separate so they don't nest anchors. */}
                   <Link to={`/locations/${loc.slug}`} className="block group">
-                    <div className="img-placeholder aspect-[5/3] mb-5 text-xs">Store image</div>
+                    <div className="img-placeholder aspect-[5/3] mb-5 text-xs relative">
+                      {loc.hasDinner && (
+                        <span className="absolute top-2 right-2 bg-wire-black text-white text-[10px] font-semibold px-2 py-1 uppercase tracking-wider">
+                          Dinner available
+                        </span>
+                      )}
+                      Store image
+                    </div>
                     <h3 className="text-xl font-semibold mb-3 group-hover:underline">{loc.name}</h3>
                     <p className="text-xs text-wire-dark mb-5 leading-relaxed">{loc.address}</p>
                   </Link>

@@ -59,7 +59,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-wire-bg border-t border-wire-pale pt-12 pb-8">
-      <div className="max-w-[1440px] mx-auto px-8">
+      <div className="max-w-[1440px] mx-auto px-6">
         <div className="flex gap-8">
           {/* Link columns */}
           <div className="flex-1 grid grid-cols-5 gap-6">

@@ -44,12 +44,12 @@ export default function FAQPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">FAQs</h1>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-8 py-12 relative">
+      <div className="max-w-3xl mx-auto px-6 py-12 relative">
         {/* Floating contact button */}
         <div className="fixed right-6 bottom-8 z-30">
           <Link to="/contact" className="flex items-center gap-2 bg-white border border-wire-pale shadow-sm px-4 py-2.5 text-sm font-medium hover:border-wire-black transition-colors">

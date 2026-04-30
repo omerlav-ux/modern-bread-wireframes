@@ -25,12 +25,12 @@ export default function GiftCardPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-20">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl">Send a gift card</h1>
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-2 gap-16 items-start">
           {/* Left: description */}
           <div>

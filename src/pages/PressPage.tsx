@@ -61,14 +61,14 @@ export default function PressPage() {
 
       {/* Page header strip - matches /about styling */}
       <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">Press</h1>
         </div>
       </div>
 
       {/* Hero quote section - mirrors the AboutUsPage hero layout
           (left: image, right: section label + large quote + body) */}
-      <div className="max-w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="img-placeholder aspect-[4/3] text-xs">Press hero image</div>
           <div>
@@ -87,7 +87,7 @@ export default function PressPage() {
       {/* Press grid - image / title / short blurb. Each card links out to the
           actual article or video. */}
       <div className="border-t border-wire-pale py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex items-end justify-between mb-10">
             <h2 className="text-3xl font-semibold">Featured coverage</h2>
             <p className="text-sm text-wire-mid">{press.length} stories</p>

@@ -73,6 +73,12 @@ const pressLogos = [
   { src: 'assets/press-6.png', alt: 'Apple Podcasts' },
 ]
 
+const dinnerLocations = [
+  { name: 'Midtown', concept: 'BigFish by Modern', hours: 'Sunday to Thursday: 5:00 PM to 9:30 PM', slug: 'midtown-east' },
+  { name: 'Upper East Side', concept: 'Modern Italia', hours: 'Sun-Wed: 5-10 PM | Thu-Sat: 5 PM-Midnight', slug: 'upper-east-side' },
+  { name: 'Englewood', concept: 'Good Food for Dinner', hours: 'Thursday: 5:00 PM to 10:00 PM', slug: 'englewood' },
+]
+
 function HeroContent({ slide, onOrder }: { slide: HeroSlide; onOrder: () => void }) {
   if (slide.kind === 'default') {
     return (
@@ -129,14 +135,61 @@ export default function HomePage() {
       {/* ── Hero (static - first slide only) ── */}
       <section className="relative overflow-hidden" style={{ height: '88vh', minHeight: 520 }}>
         <div className="img-placeholder absolute inset-0 border-0" style={{ background: '#e8e8e8' }} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
           <HeroContent slide={heroSlides[0]} onOrder={() => setPopupOpen(true)} />
+        </div>
+      </section>
+
+      {/* ── Our Specials ── */}
+      <section className="py-16">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl mb-2">Our Monthly Specials</h2>
+            <p className="text-sm text-wire-mid max-w-sm mx-auto">
+              Each month we bake something new — limited-run flavors and seasonal favorites, only available while they last.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link to="/shipping" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+              <div className="img-placeholder aspect-square" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
+                  Order shipping
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+            <Link to="/pre-orders" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+              <div className="img-placeholder aspect-square" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
+                  Pre-order
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+            <Link to="#" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+              <div className="img-placeholder aspect-square" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
+                  Order for today
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ── How to Enjoy Our Bagels ── */}
       <section className="py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl mb-2">How to Enjoy Our Bagels</h2>
             <p className="text-sm text-wire-mid max-w-sm mx-auto">
@@ -156,7 +209,7 @@ export default function HomePage() {
 
       {/* ── Shop by category ── */}
       <section className="py-12">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex items-end justify-between mb-6">
             <h2 className="text-xl">Shop by category</h2>
             <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">View all products →</Link>
@@ -180,7 +233,7 @@ export default function HomePage() {
 
       {/* ── Shop favorites ── */}
       <section className="py-12 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl">Shop favorites</h2>
           </div>
@@ -219,25 +272,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Catering banner (~100vh) ── */}
-      <section style={{ minHeight: '90vh' }} className="flex">
-        <div className="max-w-[1440px] mx-auto px-8 grid grid-cols-2 items-center w-full" style={{ background: '#d8d8d8' }}>
-          <div className="py-24 pr-16">
-            <p className="text-xs text-wire-dark mb-3">Modern bread & bagel Catering</p>
-            <h2 className="text-4xl mb-5 leading-snug">A taste worth celebrating together</h2>
-            <p className="text-sm text-wire-dark leading-relaxed mb-8 max-w-md">
-              Invite us to your next gathering - platters, boxes and artisan breads, made fresh the morning of your event.
+      {/* ── Now serving dinner ── */}
+      <section className="py-16">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl mb-2">Mornings are our thing. But evenings aren't bad either.</h2>
+            <p className="text-sm text-wire-mid max-w-sm mx-auto">
+              Evening seating, coffee bar and fresh-baked goods from 5pm. Because good food shouldn't have a curfew.
             </p>
-            <div className="flex items-center gap-4">
-              <Link to="/catering/order" className="bg-wire-black text-white px-8 py-3 text-sm font-medium hover:bg-wire-dark transition-colors">
-                Place catering order
-              </Link>
-              <Link to="/catering" className="border border-wire-black text-wire-black px-8 py-3 text-sm font-medium hover:bg-white/40 transition-colors">
-                Learn more
-              </Link>
-            </div>
           </div>
-          <div className="img-placeholder self-stretch border-0" style={{ background: '#a8a8a8', minHeight: 400 }} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {dinnerLocations.map((loc) => (
+              <Link
+                key={loc.slug}
+                to={`/locations/${loc.slug}`}
+                className="group bg-wire-ghost border border-wire-pale p-6 hover:border-wire-black transition-colors"
+              >
+                <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-2">{loc.name}</p>
+                <h3 className="text-lg font-semibold mb-3 group-hover:underline">{loc.concept}</h3>
+                <p className="text-sm text-wire-dark mb-4">{loc.hours}</p>
+                <div className="flex items-center gap-2 text-sm font-medium text-wire-dark group-hover:text-wire-black">
+                  View location
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Catering banner (~100vh) ── */}
+      <section className="py-20" style={{ background: '#d8d8d8' }}>
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+            <div className="py-6 lg:pr-16">
+              <p className="text-xs text-wire-dark mb-3">Modern bread & bagel Catering</p>
+              <h2 className="text-4xl mb-5 leading-snug">A taste worth celebrating together</h2>
+              <p className="text-sm text-wire-dark leading-relaxed mb-6 max-w-md">
+                Invite us to your next gathering - platters, boxes and artisan breads, made fresh the morning of your event.
+              </p>
+              <div className="flex items-center gap-4">
+                <Link to="/catering/order" className="bg-wire-black text-white px-6 py-3 text-sm font-medium hover:bg-wire-dark transition-colors">
+                  Place catering order
+                </Link>
+                <Link to="/catering" className="border border-wire-black text-wire-black px-6 py-3 text-sm font-medium hover:bg-white/40 transition-colors">
+                  Learn more
+                </Link>
+              </div>
+            </div>
+            <div className="img-placeholder aspect-[4/3] lg:aspect-auto lg:h-[500px]" style={{ background: '#a8a8a8' }} />
+          </div>
         </div>
       </section>
 
@@ -246,7 +332,7 @@ export default function HomePage() {
 
       {/* ── Testimonials ── */}
       <section className="py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h2 className="text-xl mb-8">Straight from our customers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {testimonials.map((t, i) => (
@@ -281,7 +367,7 @@ export default function HomePage() {
 
       {/* ── Join our club ── */}
       <section className="py-14 bg-wire-bg">
-        <div className="max-w-md mx-auto px-8 text-center">
+        <div className="max-w-md mx-auto px-6 text-center">
           <h2 className="text-2xl mb-3">Join our club</h2>
           <p className="text-sm text-wire-mid mb-2">
             Stay in the loop. Get fresh news and exclusive offers, and earn 5% off your first order.

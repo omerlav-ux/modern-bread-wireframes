@@ -43,7 +43,7 @@ export default function Navigation() {
   return (
     <>
       <nav className="bg-white border-b border-wire-pale sticky top-0 z-40">
-        <div className="w-full px-8 flex items-center justify-between h-14">
+        <div className="w-full px-6 flex items-center justify-between h-14">
 
           {/* Logo + gluten-free badge */}
           <div className="flex items-center gap-5 shrink-0">
@@ -257,7 +257,7 @@ export default function Navigation() {
             onMouseEnter={() => cancelClose('products')}
             onMouseLeave={scheduleClose}
           >
-            <div className="w-full px-8 py-8 flex gap-8">
+            <div className="w-full px-6 py-8 flex gap-8">
               <div className="flex gap-12 flex-1">
                 <div>
                   <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">Shop by category</p>
@@ -308,7 +308,7 @@ export default function Navigation() {
             onMouseEnter={() => cancelClose('locations')}
             onMouseLeave={scheduleClose}
           >
-            <div className="w-full px-8 py-8 flex gap-8">
+            <div className="w-full px-6 py-8 flex gap-8">
               <div className="flex gap-12 flex-1">
                 <div>
                   <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">New York</p>

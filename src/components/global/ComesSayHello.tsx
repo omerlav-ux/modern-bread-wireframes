@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function ComesSayHello() {
   return (
     <section>
-      <div className="max-w-[1440px] mx-auto px-8 py-20 grid grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1440px] mx-auto px-6 py-20 grid grid-cols-2 gap-16 items-center">
         <div>
           <p className="section-label mb-3">Find us in person</p>
           <h2 className="text-4xl font-semibold leading-tight mb-4">Come say hello</h2>

@@ -35,8 +35,8 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
       </svg>
     ),
-    title: 'Bathrooms',
-    body: 'Clean, accessible bathrooms available for guests.',
+    title: 'Outdoor seating',
+    body: 'Enjoy your meal al fresco with our sidewalk seating area.',
   },
   {
     icon: (
@@ -118,7 +118,7 @@ export default function LocationDetailPage() {
       <Navigation />
 
       {/* Breadcrumb */}
-      <div className="max-w-[1440px] mx-auto px-8 py-3">
+      <div className="max-w-[1440px] mx-auto px-6 py-3">
         <div className="flex items-center gap-2 text-xs text-wire-mid">
           <Link to="/locations" className="hover:text-wire-black">Locations</Link>
           <span>/</span>
@@ -130,14 +130,14 @@ export default function LocationDetailPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-10">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">Upper west side</h1>
         </div>
       </div>
 
       {/* Tabs - sticky under the nav so they stay visible while scrolling */}
       <div className="sticky top-14 z-20 bg-white border-b border-wire-pale">
-        <div className="max-w-[1440px] mx-auto px-8 flex gap-0">
+        <div className="max-w-[1440px] mx-auto px-6 flex gap-0">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -154,7 +154,7 @@ export default function LocationDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-8 py-10">
+      <div className="max-w-[1440px] mx-auto px-6 py-10">
 
         {/* About tab */}
         {activeTab === 'About' && (
@@ -250,7 +250,7 @@ export default function LocationDetailPage() {
       </div>
 
       {/* Shipping upsell - full content-width banner, content kept tightly grouped in the middle */}
-      <div className="max-w-[1440px] mx-auto px-8 py-10">
+      <div className="max-w-[1440px] mx-auto px-6 py-10">
         <div className="bg-wire-ghost border border-wire-pale py-4 px-6 flex items-center justify-center gap-5">
           <p className="text-sm font-medium">Want to order shipping instead?</p>
           <Link to="/shipping" className="text-sm border border-wire-black px-4 py-2 hover:bg-wire-black hover:text-white transition-colors font-medium">
@@ -260,7 +260,7 @@ export default function LocationDetailPage() {
       </div>
 
       {/* At this location features */}
-      <div className="max-w-[1440px] mx-auto px-8 py-12">
+      <div className="max-w-[1440px] mx-auto px-6 py-12">
         <h2 className="text-xl font-semibold mb-8">At this location</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {features.map((f) => (
@@ -274,7 +274,7 @@ export default function LocationDetailPage() {
       </div>
 
       {/* Menus section */}
-      <div className="max-w-[1440px] mx-auto px-8 pb-16">
+      <div className="max-w-[1440px] mx-auto px-6 pb-16">
         <h2 className="text-xl font-semibold mb-6">Menus</h2>
         <div className="flex gap-0 border-b border-wire-pale mb-6">
           {menuCategories.map(cat => (

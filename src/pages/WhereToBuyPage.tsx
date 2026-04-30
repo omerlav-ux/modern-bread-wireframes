@@ -12,7 +12,7 @@ export default function WhereToBuyPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <p className="section-label mb-3">Baking mixes</p>
           <h1 className="text-4xl font-semibold">Where to buy our baking mixes</h1>
         </div>
@@ -20,7 +20,7 @@ export default function WhereToBuyPage() {
 
       {/* Two simple paths: online (Amazon) + in-store (map, links to all locations) */}
       <section className="py-20">
-        <div className="max-w-[1440px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* Online */}
           <div className="card p-8 flex flex-col">
             <div className="img-placeholder aspect-[4/3] mb-6 text-xs">Baking mix product photo</div>

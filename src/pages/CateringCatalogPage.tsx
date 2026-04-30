@@ -30,7 +30,7 @@ export default function CateringCatalogPage() {
       <Navigation />
 
       {/* Breadcrumb */}
-      <div className="max-w-[1440px] mx-auto px-8 py-3">
+      <div className="max-w-[1440px] mx-auto px-6 py-3">
         <div className="flex items-center gap-2 text-xs text-wire-mid">
           <Link to="/" className="hover:text-wire-black">Place an order</Link>
           <span>/</span>
@@ -40,12 +40,12 @@ export default function CateringCatalogPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-10">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">Catering</h1>
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-8 py-8">
+      <div className="max-w-[1440px] mx-auto px-6 py-8">
         {/* Location + status */}
         <div className="flex items-center gap-2 mb-4">
           <svg className="w-4 h-4 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@ export default function CateringCatalogPage() {
 
       {/* Category tabs - sticky under the nav, full-width bar */}
       <div className="sticky top-14 z-20 bg-white border-b border-wire-pale">
-        <div className="max-w-[1440px] mx-auto px-8 flex items-center justify-between gap-4">
+        <div className="max-w-[1440px] mx-auto px-6 flex items-center justify-between gap-4">
           <div className="flex gap-0">
             {categories.map(cat => (
               <button
@@ -120,7 +120,7 @@ export default function CateringCatalogPage() {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-8 py-8">
+      <div className="max-w-[1440px] mx-auto px-6 py-8">
         {/* Section title + note */}
         <h2 className="text-2xl font-semibold mb-2">Platters and Catering</h2>
         <p className="text-xs text-wire-mid mb-1">All orders must be made at least 48 HOURS in advance.</p>

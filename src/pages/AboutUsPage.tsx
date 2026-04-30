@@ -30,13 +30,13 @@ export default function AboutUsPage() {
 
       {/* Page header */}
       <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">About us</h1>
         </div>
       </div>
 
       {/* Hero quote section */}
-      <div className="max-w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-2 gap-12 items-start">
           <div className="img-placeholder aspect-[4/3] text-xs">Bakery hero image</div>
           <div>
@@ -56,7 +56,7 @@ export default function AboutUsPage() {
             <p className="text-sm text-wire-dark leading-relaxed">
               Experience our commitment to extraordinary baked goods at any of our Modern Bread & Bagel locations.
             </p>
-            <button className="mt-8 px-8 py-2.5 border border-wire-black text-sm font-medium hover:bg-wire-black hover:text-white transition-colors">
+            <button className="mt-8 px-6 py-2.5 border border-wire-black text-sm font-medium hover:bg-wire-black hover:text-white transition-colors">
               Continue
             </button>
           </div>
@@ -65,7 +65,7 @@ export default function AboutUsPage() {
 
       {/* Origin story */}
       <div className="border-t border-wire-pale py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="grid grid-cols-2 gap-16">
             <div>
               <h2 className="text-4xl font-semibold leading-tight mb-6">
@@ -92,7 +92,7 @@ export default function AboutUsPage() {
 
       {/* Straight from our founders */}
       <div className="border-t border-wire-pale py-16 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <p className="section-label mb-8">Straight from our founders</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {founders.map(f => (
@@ -109,7 +109,7 @@ export default function AboutUsPage() {
 
       {/* 100% Gluten Free */}
       <div className="border-t border-wire-pale py-16">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="grid grid-cols-2 gap-16">
             <div>
               <p className="section-label mb-3">100% gluten free</p>
@@ -133,7 +133,7 @@ export default function AboutUsPage() {
 
       {/* Certified Kosher */}
       <div className="border-t border-wire-pale py-16 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-8">
+        <div className="max-w-[1440px] mx-auto px-6">
           <div className="grid grid-cols-2 gap-16">
             <div>
               <p className="section-label mb-3">Certified Kosher</p>

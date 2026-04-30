@@ -13,7 +13,7 @@ export default function CateringPDPPage() {
       <AnnouncementBar />
       <Navigation />
 
-      <div className="border-b border-wire-ghost py-3 px-8">
+      <div className="border-b border-wire-ghost py-3 px-6">
         <div className="max-w-[1440px] mx-auto text-xs text-wire-mid flex items-center gap-2">
           <Link to="/catering" className="hover:text-wire-black">Catering</Link>
           <span>›</span>
@@ -23,7 +23,7 @@ export default function CateringPDPPage() {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-8 py-12">
+      <div className="max-w-[1440px] mx-auto px-6 py-12">
         <div className="grid grid-cols-2 gap-16 items-start">
           {/* Gallery */}
           <div className="sticky top-24">
