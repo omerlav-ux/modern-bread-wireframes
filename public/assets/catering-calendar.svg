@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="CalendarDots" clip-path="url(#clip0_19258_41768)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M42.25 8.125H9.75C8.85254 8.125 8.125 8.85254 8.125 9.75V42.25C8.125 43.1475 8.85254 43.875 9.75 43.875H42.25C43.1475 43.875 43.875 43.1475 43.875 42.25V9.75C43.875 8.85254 43.1475 8.125 42.25 8.125Z" stroke="var(--stroke-0, black)" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M35.75 4.875V11.375" stroke="var(--stroke-0, black)" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M16.25 4.875V11.375" stroke="var(--stroke-0, black)" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M8.125 17.875H43.875" stroke="var(--stroke-0, black)" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M26 29.25C27.3462 29.25 28.4375 28.1587 28.4375 26.8125C28.4375 25.4663 27.3462 24.375 26 24.375C24.6538 24.375 23.5625 25.4663 23.5625 26.8125C23.5625 28.1587 24.6538 29.25 26 29.25Z" fill="var(--fill-0, black)"/>
+<path id="Vector_7" d="M34.9375 29.25C36.2837 29.25 37.375 28.1587 37.375 26.8125C37.375 25.4663 36.2837 24.375 34.9375 24.375C33.5913 24.375 32.5 25.4663 32.5 26.8125C32.5 28.1587 33.5913 29.25 34.9375 29.25Z" fill="var(--fill-0, black)"/>
+<path id="Vector_8" d="M17.0625 37.375C18.4087 37.375 19.5 36.2837 19.5 34.9375C19.5 33.5913 18.4087 32.5 17.0625 32.5C15.7163 32.5 14.625 33.5913 14.625 34.9375C14.625 36.2837 15.7163 37.375 17.0625 37.375Z" fill="var(--fill-0, black)"/>
+<path id="Vector_9" d="M26 37.375C27.3462 37.375 28.4375 36.2837 28.4375 34.9375C28.4375 33.5913 27.3462 32.5 26 32.5C24.6538 32.5 23.5625 33.5913 23.5625 34.9375C23.5625 36.2837 24.6538 37.375 26 37.375Z" fill="var(--fill-0, black)"/>
+<path id="Vector_10" d="M34.9375 37.375C36.2837 37.375 37.375 36.2837 37.375 34.9375C37.375 33.5913 36.2837 32.5 34.9375 32.5C33.5913 32.5 32.5 33.5913 32.5 34.9375C32.5 36.2837 33.5913 37.375 34.9375 37.375Z" fill="var(--fill-0, black)"/>
+</g>
+<defs>
+<clipPath id="clip0_19258_41768">
+<rect width="52" height="52" fill="white"/>
+</clipPath>
+</defs>
+</svg>

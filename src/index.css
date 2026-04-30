@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-white text-wire-black font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-normal;
+  }
+}
+
+@layer components {
+  .img-placeholder {
+    @apply bg-[#e0e0e0] flex items-center justify-center overflow-hidden;
+    color: #e0e0e0 !important;
+  }
+  .img-placeholder * {
+    color: #e0e0e0 !important;
+  }
+  .img-placeholder .placeholder-icon,
+  .img-placeholder .placeholder-icon * {
+    color: #aaa !important;
+  }
+  /* Badges and arrow buttons overlaid on placeholders stay readable.
+     Force a dark text color so they're not washed out by the parent
+     img-placeholder gray. Override per-badge with stroke="..." on SVGs. */
+  .img-placeholder .placeholder-badge,
+  .img-placeholder .placeholder-badge * {
+    color: #1a1a1a !important;
+  }
+  .btn-primary {
+    @apply bg-wire-black text-white px-6 py-3 text-sm font-medium tracking-wide hover:bg-wire-dark transition-colors;
+  }
+  .btn-secondary {
+    @apply border border-wire-black text-wire-black px-6 py-3 text-sm font-medium tracking-wide hover:bg-wire-ghost transition-colors;
+  }
+  .btn-ghost {
+    @apply text-wire-black px-4 py-2 text-sm font-medium underline underline-offset-2 hover:text-wire-dark;
+  }
+  .input-field {
+    @apply border border-wire-pale px-4 py-3 text-sm w-full focus:outline-none focus:border-wire-black;
+  }
+  .section-label {
+    @apply text-xs tracking-[0.15em] uppercase font-medium text-wire-mid;
+  }
+  .card {
+    @apply border border-wire-pale bg-white;
+  }
+  .tag {
+    @apply inline-block text-xs font-medium px-2 py-0.5 border;
+  }
+  /* Hide the horizontal scrollbar on carousels while keeping scroll behavior. */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
