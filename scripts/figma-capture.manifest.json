@@ -1,0 +1,18 @@
+[
+  { "route": "/home", "captureId": "d1d9e771-ccf5-4063-958f-242a13fd0c5c" },
+  { "route": "/shipping", "captureId": "82548b72-dd5a-49f9-be17-49d2ca5efd5f" },
+  { "route": "/shipping/product", "captureId": "a5787c0e-dc90-4d3a-8eea-8201c9965e25" },
+  { "route": "/pre-orders", "captureId": "5107b7e2-9cdd-4f80-9c17-036b745579a6" },
+  { "route": "/pre-orders/product", "captureId": "b80e69aa-f4d3-43db-8b98-34b4ea421787" },
+  { "route": "/catering", "captureId": "dc70b9db-7d6b-4377-b4c2-4a176cf1e42e" },
+  { "route": "/catering/order", "captureId": "aee336df-6b84-42b7-bda1-36e6a5b2185a" },
+  { "route": "/catering/product", "captureId": "ee13514c-5400-4d3f-8155-d76e092d59d8" },
+  { "route": "/locations", "captureId": "7dca59fe-9282-457c-a946-8ed1453e168b" },
+  { "route": "/locations/upper-west-side", "captureId": "f56ca27c-64c3-4087-b21e-dec3ebc29ffb" },
+  { "route": "/contact", "captureId": "450a6e4f-2e60-42ba-afaa-fce3ccff3b8c" },
+  { "route": "/about", "captureId": "95a18e2d-cde3-4dfb-827c-4291c4ebe040" },
+  { "route": "/faq", "captureId": "3e4c14ac-d861-4fae-90af-f60594926dc9" },
+  { "route": "/gift-card", "captureId": "2a8cce0d-9dfe-4c48-b9af-4c34bd376ccc" },
+  { "route": "/press", "captureId": "939c7788-a94d-4ddf-8123-68eb5807c42e" },
+  { "route": "/where-to-buy", "captureId": "e353b4b2-ef3d-4c3c-9adf-edb3380f75aa" }
+]
