@@ -149,8 +149,8 @@ export default function HomePage() {
               Each month we bake something new — limited-run flavors and seasonal favorites, only available while they last.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Link to="/shipping" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+          <div className="md:grid md:grid-cols-3 md:gap-4 flex md:flex-none overflow-x-auto gap-3 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory no-scrollbar">
+            <Link to="/shipping" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
               <div className="img-placeholder aspect-square" />
               <div className="p-6 text-center">
                 <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
@@ -161,7 +161,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
-            <Link to="/pre-orders" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+            <Link to="/pre-orders" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
               <div className="img-placeholder aspect-square" />
               <div className="p-6 text-center">
                 <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
@@ -172,7 +172,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
-            <Link to="#" className="group bg-wire-bg hover:bg-wire-ghost transition-colors">
+            <Link to="#" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
               <div className="img-placeholder aspect-square" />
               <div className="p-6 text-center">
                 <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
@@ -196,9 +196,9 @@ export default function HomePage() {
               Whether you're across the street or across the country, we make it easy to enjoy the perfect bake.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
             {orderMethods.map((m) => (
-              <Link key={m.label} to={m.href} className="group block">
+              <Link key={m.label} to={m.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
                 <div className="img-placeholder aspect-square mb-3" />
                 <p className="text-sm text-center text-wire-dark group-hover:underline">{m.label}</p>
               </Link>
@@ -214,19 +214,19 @@ export default function HomePage() {
             <h2 className="text-xl">Shop by category</h2>
             <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">View all products →</Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {ourProducts.map((p) => (
-              <Link key={p.name} to={p.href} className="group block">
-                <div className="img-placeholder aspect-[4/3] mb-3 relative">
-                  <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-                    </svg>
-                  </span>
-                </div>
-                <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
-              </Link>
-            ))}
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
+              {ourProducts.map((p) => (
+                <Link key={p.name} to={p.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                  <div className="img-placeholder aspect-[4/3] mb-3 relative">
+                    <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
+                </Link>
+              ))}
           </div>
         </div>
       </section>
@@ -237,37 +237,37 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl">Shop favorites</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {/* First 3 product cards */}
-            {shopFavorites.map((p) => (
-              <Link key={p.name} to={p.href} className="group block bg-white">
-                <div className="img-placeholder aspect-square relative">
-                  {p.badge && (
-                    <span
-                      className="placeholder-badge absolute top-2 left-2 bg-white text-[10px] font-semibold px-2 py-0.5 border border-wire-pale"
-                      style={{ color: '#222' }}
-                    >
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-                <div className="p-3">
-                  <p className="text-sm text-wire-dark group-hover:underline mb-1">{p.name}</p>
-                  <p className="text-sm font-semibold">{p.price}</p>
-                </div>
-              </Link>
-            ))}
-            {/* 4th card: CTA tile */}
-            <div className="flex flex-col">
-              <div className="img-placeholder aspect-square" style={{ background: '#a0a0a0' }} />
-              <div className="p-3 bg-wire-ghost flex-1 flex flex-col justify-center">
-                <p className="text-sm font-semibold mb-2">Order same day delivery/pickup</p>
-                <Link to="#" className="text-sm text-wire-dark flex items-center gap-1 hover:underline">
-                  Order for today
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
+              {/* First 3 product cards */}
+              {shopFavorites.map((p) => (
+                <Link key={p.name} to={p.href} className="group block bg-white flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                  <div className="img-placeholder aspect-square relative">
+                    {p.badge && (
+                      <span
+                        className="placeholder-badge absolute top-2 left-2 bg-white text-[10px] font-semibold px-2 py-0.5 border border-wire-pale"
+                        style={{ color: '#222' }}
+                      >
+                        {p.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <p className="text-sm text-wire-dark group-hover:underline mb-1">{p.name}</p>
+                    <p className="text-sm font-semibold">{p.price}</p>
+                  </div>
                 </Link>
+              ))}
+              {/* 4th card: CTA tile */}
+              <div className="flex flex-col flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                <div className="img-placeholder aspect-square" style={{ background: '#a0a0a0' }} />
+                <div className="p-3 bg-wire-ghost flex-1 flex flex-col justify-center">
+                  <p className="text-sm font-semibold mb-2">Order same day delivery/pickup</p>
+                  <Link to="#" className="text-sm text-wire-dark flex items-center gap-1 hover:underline">
+                    Order for today
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                  </Link>
+                </div>
               </div>
-            </div>
           </div>
         </div>
       </section>
