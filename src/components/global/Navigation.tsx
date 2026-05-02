@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { TOAST_IN_STORE_GIFT_CARD_URL } from '../../constants/external'
 import OrderRoutingPopup from './OrderRoutingPopup'
 import MiniCart from './MiniCart'
 
@@ -186,13 +187,31 @@ export default function Navigation() {
                 >
                   <div className="bg-white border border-wire-pale shadow-sm min-w-[180px] py-2">
                     {[
-                      { label: 'In-store gift cards', href: '/gift-card' },
+                      { label: 'In-store gift cards', href: TOAST_IN_STORE_GIFT_CARD_URL, external: true },
                       { label: 'Online gift cards', href: '/gift-card' },
-                    ].map(l => (
-                      <Link key={l.label} to={l.href} onClick={() => setOpenDropdown(null)} className="block px-4 py-2 text-sm text-wire-dark hover:bg-wire-ghost">
-                        {l.label}
-                      </Link>
-                    ))}
+                    ].map((l) =>
+                      l.external ? (
+                        <a
+                          key={l.label}
+                          href={l.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setOpenDropdown(null)}
+                          className="block px-4 py-2 text-sm text-wire-dark hover:bg-wire-ghost"
+                        >
+                          {l.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={l.label}
+                          to={l.href}
+                          onClick={() => setOpenDropdown(null)}
+                          className="block px-4 py-2 text-sm text-wire-dark hover:bg-wire-ghost"
+                        >
+                          {l.label}
+                        </Link>
+                      )
+                    )}
                   </div>
                 </div>
               )}

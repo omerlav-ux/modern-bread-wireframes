@@ -1,75 +1,67 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import AnnouncementBar from '../components/global/AnnouncementBar'
 import Navigation from '../components/global/Navigation'
 import Footer from '../components/global/Footer'
 import ComesSayHello from '../components/global/ComesSayHello'
-import ProductCard from '../components/catalog/ProductCard'
 
 const amounts = ['$25', '$50', '$100', '$150', '$200']
 
-const favorites = [
-  { name: 'Everything Bagel 6-Pack', price: '$24.00', href: '/shipping/product' },
-  { name: 'Chocolate Babka', price: '$32.00', href: '/shipping/product' },
-  { name: 'Blueberry Muffin Dozen', price: '$36.00', href: '/shipping/product' },
-  { name: 'Classic NY Sourdough', price: '$18.00', href: '/shipping/product' },
+const favoriteCategories = [
+  { title: 'Bagels & breads', href: '/shipping', bg: 'bg-[#f6f6f6]', imgBg: 'bg-[#d1d1d1]' },
+  { title: 'Cakes & sweets', href: '/shipping', bg: 'bg-[#f6f6f6]', imgBg: 'bg-[#d1d1d1]' },
+  { title: 'Baking mixes', href: '/shipping', bg: 'bg-[#f6f6f6]', imgBg: 'bg-[#d1d1d1]' },
+  {
+    title: 'Order same day delivery/pickup',
+    href: '/home',
+    bg: 'bg-[#e8e8e8]',
+    imgBg: 'bg-[#aeaeae]',
+    cta: true,
+  },
 ]
 
 export default function GiftCardPage() {
   const [amount, setAmount] = useState('$50')
+  const [quantity, setQuantity] = useState(0)
   const [recipient, setRecipient] = useState<'someone' | 'myself'>('someone')
+
+  const decQty = () => setQuantity((q) => Math.max(0, q - 1))
+  const incQty = () => setQuantity((q) => q + 1)
 
   return (
     <div className="min-h-screen bg-white">
       <AnnouncementBar />
       <Navigation />
 
-      {/* Page header */}
-      <div className="bg-wire-bg py-20">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <h1 className="text-4xl">Send a gift card</h1>
+      <div className="bg-[#d1d1d1] min-h-[400px] flex flex-col justify-end pb-10 pt-24 px-6 max-w-[1920px] mx-auto">
+        <div className="max-w-[1440px] mx-auto w-full">
+          <h1 className="text-[55px] leading-[1.2] font-normal text-wire-black">Online gift card</h1>
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 gap-16 items-start">
-          {/* Left: description */}
-          <div>
-            <div className="img-placeholder aspect-[4/3] mb-8">
-              <span className="text-wire-light">Gift card design - product illustration</span>
-            </div>
-            <h2 className="text-2xl font-semibold mb-4">Why gift a Modern Bread & Bagels card?</h2>
-            <ul className="space-y-3">
-              {[
-                'Redeemable for any product - shipping, pre-orders, or in-store',
-                'Delivered instantly by email',
-                'Never expires',
-                'Perfect for anyone with dietary restrictions',
-                'Fully gluten-free and Kosher menu',
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-wire-dark">
-                  <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+      <div className="max-w-[1440px] mx-auto px-6 py-14 lg:py-16">
+        <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,589px)_1fr] gap-12 xl:gap-16 xl:gap-x-24 items-start">
+          <div className="text-lg text-wire-black leading-[1.4] max-w-xl">
+            <p>
+              Treat yourself or a loved one to a Modern Bread and Bagel gift card. Use this gift for any Nationwide
+              Shipping or Pre-orders. Choose an amount and write a personalized message for the best gift!
+            </p>
           </div>
 
-          {/* Right: form */}
-          <div className="card p-8">
-            <h3 className="font-semibold text-lg mb-6">Customize your gift card</h3>
-
-            {/* Amount selector */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-3">Amount</label>
-              <div className="flex gap-2 flex-wrap">
+          <div className="flex flex-col gap-8 w-full max-w-xl xl:max-w-none xl:justify-self-end">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-baseline gap-1 pb-2">
+                <label className="text-base text-wire-black leading-[1.4]">Amount</label>
+                <span className="text-sm text-wire-black leading-5">*</span>
+              </div>
+              <div className="flex gap-3 flex-wrap sm:flex-nowrap">
                 {amounts.map((a) => (
                   <button
                     key={a}
+                    type="button"
                     onClick={() => setAmount(a)}
-                    className={`px-5 py-2.5 text-sm font-medium border transition-colors ${
-                      amount === a ? 'bg-wire-black text-white border-wire-black' : 'border-wire-pale text-wire-dark hover:border-wire-mid'
+                    className={`flex-1 min-w-[72px] min-h-[51px] border border-wire-black text-lg leading-[1.4] transition-colors ${
+                      amount === a ? 'bg-[rgba(217,217,217,0.4)]' : 'bg-transparent hover:bg-wire-ghost'
                     }`}
                   >
                     {a}
@@ -78,88 +70,161 @@ export default function GiftCardPage() {
               </div>
             </div>
 
-            {/* Recipient toggle */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-3">Who is this for?</label>
-              <div className="flex border border-wire-pale w-fit">
-                {(['someone', 'myself'] as const).map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => setRecipient(type)}
-                    className={`px-6 py-2.5 text-sm font-medium capitalize transition-colors ${recipient === type ? 'bg-wire-black text-white' : 'text-wire-mid hover:bg-wire-ghost'}`}
-                  >
-                    {type === 'someone' ? 'For someone else' : 'For myself'}
-                  </button>
-                ))}
+            <div className="flex flex-col gap-3">
+              <label className="text-base text-wire-black leading-[1.4]">Quantity</label>
+              <div className="flex items-center gap-2 border border-wire-dark/60 bg-white h-10 px-1.5 w-full max-w-[200px]">
+                <button
+                  type="button"
+                  onClick={decQty}
+                  className="w-6 h-6 flex items-center justify-center text-wire-black shrink-0 hover:bg-wire-ghost"
+                  aria-label="Decrease quantity"
+                >
+                  <span className="block w-[15px] h-px bg-wire-black" />
+                </button>
+                <span className="flex-1 text-center text-lg text-wire-mid tabular-nums">{quantity}</span>
+                <button
+                  type="button"
+                  onClick={incQty}
+                  className="w-6 h-6 flex items-center justify-center text-wire-black shrink-0 hover:bg-wire-ghost text-lg leading-none pb-0.5"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
               </div>
             </div>
 
-            {/* Recipient fields (conditional) */}
-            {recipient === 'someone' && (
-              <div className="mb-6 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Recipient name</label>
-                    <input type="text" placeholder="Their name" className="input-field" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Recipient email</label>
-                    <input type="email" placeholder="their@email.com" className="input-field" />
-                  </div>
+            <div className="flex flex-col gap-3">
+              <label className="text-base text-wire-black leading-[1.4] pb-2 block">Who is the gift card for?</label>
+              <div className="flex gap-3 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setRecipient('someone')}
+                  className={`min-h-[51px] px-8 border border-wire-black text-lg leading-[1.4] transition-colors ${
+                    recipient === 'someone' ? 'bg-[rgba(217,217,217,0.4)]' : 'bg-transparent hover:bg-wire-ghost'
+                  }`}
+                >
+                  For someone else
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRecipient('myself')}
+                  className={`min-h-[51px] px-8 border border-wire-black text-lg leading-[1.4] transition-colors ${
+                    recipient === 'myself' ? 'bg-[rgba(217,217,217,0.4)]' : 'bg-transparent hover:bg-wire-ghost'
+                  }`}
+                >
+                  For myself
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-baseline gap-1 pb-2">
+                  <label className="text-base text-wire-black leading-[1.4]">
+                    {recipient === 'myself' ? 'Your email' : 'Recipient email'}
+                  </label>
+                  <span className="text-sm text-wire-black leading-5">*</span>
+                </div>
+                <div className="flex gap-2 items-stretch">
+                  <input
+                    type="email"
+                    placeholder=""
+                    className="input-field flex-1 py-3 px-3 border-wire-dark/60 text-lg"
+                  />
+                  <Link
+                    to="/contact"
+                    className="btn-secondary whitespace-nowrap shrink-0 px-4 py-3 text-base inline-flex items-center gap-2 self-stretch"
+                  >
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                    Contact us
+                  </Link>
                 </div>
               </div>
-            )}
 
-            {/* Delivery date */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-2">
-                {recipient === 'someone' ? 'Delivery date' : 'Send to my email'}
-              </label>
-              {recipient === 'someone' ? (
-                <>
-                  <input type="date" className="input-field" />
-                  <p className="text-xs text-wire-mid mt-1.5">The gift card will be emailed to them on this date</p>
-                </>
-              ) : (
-                <input type="email" placeholder="your@email.com" className="input-field" />
-              )}
+              <div className="flex flex-col gap-2">
+                <label className="text-base text-wire-black leading-[1.4] pb-2 block">
+                  {recipient === 'myself' ? 'Your name' : 'Recipient name'}
+                </label>
+                <input type="text" placeholder="" className="input-field py-3 px-3 border-wire-dark/60 text-lg" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-base text-wire-black leading-[1.4] pb-2 block">Delivery date</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Select a Date"
+                    className="input-field py-3 px-3 pr-11 border-wire-dark/60 text-lg text-wire-mid placeholder:text-wire-mid w-full"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-wire-dark">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-base text-wire-black leading-[1.4] pb-2 block">Add a message</label>
+                <textarea
+                  rows={5}
+                  placeholder="Write your message here"
+                  className="input-field resize-none py-3 px-3 border-wire-dark/60 text-lg placeholder:text-wire-mid min-h-[140px]"
+                />
+              </div>
             </div>
 
-            {/* Message */}
-            <div className="mb-8">
-              <label className="block text-xs font-semibold uppercase tracking-wider mb-2">Personal message <span className="text-wire-light font-normal normal-case">(optional)</span></label>
-              <textarea
-                rows={3}
-                placeholder="Add a personal note..."
-                className="input-field resize-none"
-              />
-            </div>
-
-            <button className="btn-primary w-full text-base py-4">
-              Purchase {amount} gift card
+            <button type="button" className="w-full min-h-[58px] bg-wire-black text-white text-lg leading-[1.4] rounded-[5px] border border-[#626060] hover:bg-wire-dark transition-colors">
+              Purchase gift card
             </button>
-            <p className="text-xs text-center text-wire-mid mt-3">Delivered instantly by email. Never expires.</p>
           </div>
         </div>
 
-        {/* Shop favorites */}
-        <div className="mt-24 pt-12">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="section-label mb-2">Not sure what to get?</p>
-              <h2 className="text-3xl font-semibold">Shop our favorites</h2>
-            </div>
-            <a href="/shipping" className="btn-ghost">See all products →</a>
+        <div className="mt-20 lg:mt-24 pt-12 border-t border-wire-pale">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <h2 className="text-[32px] font-medium leading-[1.4] text-wire-black">Shop our favorites</h2>
+            <Link to="/shipping" className="text-lg underline underline-offset-2 text-wire-black hover:text-wire-dark">
+              View all products
+            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {favorites.map((p) => (
-              <ProductCard key={p.name} {...p} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+            {favoriteCategories.map((cat) => (
+              <Link
+                key={cat.title}
+                to={cat.href}
+                className={`flex flex-col gap-3 ${cat.bg} pb-4 group`}
+              >
+                <div className={`${cat.imgBg} aspect-[438/430] w-full max-h-[320px] lg:max-h-[430px]`} />
+                <div className="px-4 flex flex-col gap-3">
+                  <p className="text-lg font-semibold leading-[1.4] text-wire-black">{cat.title}</p>
+                  {cat.cta && (
+                    <span className="inline-flex items-center gap-1.5 text-lg text-wire-black group-hover:underline">
+                      Shop now
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </span>
+                  )}
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </div>
 
-      <ComesSayHello />
+      <ComesSayHello showEyebrow={false} buttonVariant="outline" />
       <Footer />
     </div>
   )

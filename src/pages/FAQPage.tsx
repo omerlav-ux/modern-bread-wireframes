@@ -13,7 +13,10 @@ const faqs = [
         a: "We are limiting new accounts due to the space capacity, but please reach out to us at support@tastebuckconcepts.com and we will add you to our list and reach out to you when we are ready to add your account.",
         defaultOpen: true,
       },
-      { q: 'Do you do gift certificates?', a: 'Yes! We offer both online and in-store gift cards. Visit our gift card page to purchase one.' },
+      {
+        q: 'Do you do gift certificates?',
+        a: 'Yes. Online gift cards for nationwide shipping and pre-orders live on our site (Gift card). In-store and Toast ordering gift cards are purchased on Toast — open Gift card → In-store gift cards from the menu.',
+      },
     ],
   },
   {

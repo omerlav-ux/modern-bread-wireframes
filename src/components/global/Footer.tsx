@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { TOAST_IN_STORE_GIFT_CARD_URL } from '../../constants/external'
 
-const columns = [
+type FooterLink = { label: string; href: string; external?: boolean }
+
+const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: 'Shop',
     links: [
@@ -11,7 +14,7 @@ const columns = [
       { label: 'Specials / seasonal', href: '/shipping' },
       { label: 'Baking mixes', href: '/shipping' },
       { label: 'Online gift card', href: '/gift-card' },
-      { label: 'In-store gift card', href: '/gift-card' },
+      { label: 'In-store gift card', href: TOAST_IN_STORE_GIFT_CARD_URL, external: true },
     ],
   },
   {
@@ -69,7 +72,20 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <Link to={link.href} className="text-xs text-wire-mid hover:text-wire-black transition-colors">{link.label}</Link>
+                      {link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-wire-mid hover:text-wire-black transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link to={link.href} className="text-xs text-wire-mid hover:text-wire-black transition-colors">
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
