@@ -54,7 +54,7 @@ export default function App() {
       </Routes>
       <Link
         to="/contact"
-        className="fixed bottom-6 right-6 z-50 bg-wire-black text-white px-5 py-3 text-sm font-medium hover:bg-wire-dark transition-colors shadow-lg"
+        className="fixed bottom-6 right-6 z-50 bg-wire-mid text-white px-5 py-3 text-sm hover:bg-wire-dark transition-colors shadow-md"
       >
         Contact us
       </Link>

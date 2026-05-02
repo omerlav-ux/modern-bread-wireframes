@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "figma:capture:pages": "node scripts/figma-batch-run.mjs"
+    "figma:capture:pages": "node scripts/figma-batch-run.mjs",
+    "figma:capture:rest": "FIGMA_CAPTURE_MANIFEST=scripts/figma-capture-rest-v2.manifest.json FIGMA_CAPTURE_TIMEOUT_MS=240000 node scripts/figma-batch-run.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
