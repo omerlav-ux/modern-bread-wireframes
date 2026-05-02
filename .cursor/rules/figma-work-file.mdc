@@ -1,0 +1,17 @@
+---
+description: Where to place generated Figma frames for Modern Bread wireframes
+globs:
+alwaysApply: false
+---
+
+# Figma file — paste / generate location
+
+When creating or moving frames via Figma MCP (`use_figma`, captures, auto-layout shells):
+
+- **File:** `2WRhGz79ykuKjwr6z5gVJ3` (Modern Bread internal work file)
+- **Target page (parent node):** **`19279:4215`** — page name **Cusor prototype**
+- **Deep link:** `https://www.figma.com/design/2WRhGz79ykuKjwr6z5gVJ3/...?node-id=19279-4215`
+
+Append new top-level frames **to this page** (`getNodeByIdAsync('19279:4215')`, verify `type === 'PAGE'`), then position horizontally past existing captures (e.g. max sibling `x + width + 240`).
+
+Do **not** default to `figma.currentPage` or the **Cover** page unless the user asks.
