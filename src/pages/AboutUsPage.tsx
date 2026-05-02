@@ -1,25 +1,67 @@
+import { Link } from 'react-router-dom'
 import AnnouncementBar from '../components/global/AnnouncementBar'
 import Navigation from '../components/global/Navigation'
 import Footer from '../components/global/Footer'
 import ComesSayHello from '../components/global/ComesSayHello'
 
-const founders = [
-  { name: 'Orly Gottesman', title: 'Founder', quote: '"There are bakeries that produce more, but none that care more."' },
-  { name: 'David Gottesman', title: 'Founder', quote: '"We had one goal: make food that everyone loves, regardless of limitations."' },
-  { name: 'Maya Cohen', title: 'Head of Catering', quote: '"The best events start with food that feels like home."' },
-  { name: 'Rachel Katz', title: 'Head Baker', quote: '"Every batch is a chance to get closer to perfect."' },
+const customers = [
+  {
+    quote: '“these are hands down the most amazing gluten free bagels i have ever tried.”',
+    name: 'Christina',
+  },
+  {
+    quote: '“So beyond grateful my kids know what a real NY bagel tastes like.”',
+    name: 'Kristin',
+  },
+  {
+    quote: '“I\'m not even gluten-free and would choose this bread over nearly every gluteny bread available.”',
+    name: 'Benjamin',
+  },
+  {
+    quote: '“I\'m not even gluten-free and would choose this bread over nearly every gluteny bread available.”',
+    name: 'Benjamin',
+  },
 ]
 
-const gfPoints = [
-  { label: 'Hub facility', body: 'Our facility is a dedicated gluten-free kitchen. No shared surfaces, no exceptions.' },
-  { label: 'Proprietary test routine', body: 'Each batch undergoes third-party testing to below 10ppm.' },
-  { label: 'Certified facility', body: 'We are certified by the Gluten Intolerance Group (GIG), the industry standard.' },
+const gfBoxes = [
+  {
+    title: 'Nut-free',
+    body: 'Our facility is also entirely nut-free — safe for those with nut allergies.',
+  },
+  {
+    title: 'Proprietary Ancient Grain blends',
+    body: 'Our blends are developed for real texture and chew.',
+  },
+  {
+    title: 'Dedicated facility',
+    body: 'No shared equipment with gluten-containing products. Ever.',
+  },
 ]
 
-const kosherPoints = [
-  { label: 'Under OU supervision', body: 'Certified by the Orthodox Union (OU), the most recognized Kosher authority.' },
-  { label: 'Closed Saturdays', body: 'We observe Shabbat - all locations closed every Saturday.' },
-  { label: 'Shabbat holidays', body: 'All locations are closed on Passover (Pesach) and other major Jewish holidays.' },
+const kosherBoxes = [
+  {
+    title: 'Certification',
+    body: (
+      <>
+        <p className="mb-0">Certified by the International Kosher Council (IKC) under Rabbi Zev Schwartz.</p>
+        <p className="text-wire-mid mt-2">
+          For questions regarding certification contact Rabbi Zev directly at 718-635-1037.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: 'Shabbat & holidays',
+    body: (
+      <>
+        <p className="mb-0">All locations are closed on Saturdays.</p>
+        <p className="text-wire-mid mt-2">
+          Special hours apply for Passover, Rosh Hashanah, Yom Kippur, Sukkot and Chanukah. Check individual
+          location pages for details.
+        </p>
+      </>
+    ),
+  },
 ]
 
 export default function AboutUsPage() {
@@ -28,134 +70,185 @@ export default function AboutUsPage() {
       <AnnouncementBar />
       <Navigation />
 
-      {/* Page header */}
-      <div className="bg-wire-bg py-16">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <h1 className="text-4xl font-semibold">About us</h1>
+      <div className="bg-[#d1d1d1] min-h-[400px] flex flex-col justify-end pb-10 pt-24 px-6 max-w-[1920px] mx-auto">
+        <div className="max-w-[1440px] mx-auto w-full">
+          <h1 className="text-[55px] leading-[1.2] font-normal text-wire-black">About us</h1>
         </div>
       </div>
 
-      {/* Hero quote section */}
-      <div className="max-w-[1440px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 gap-12 items-start">
-          <div className="img-placeholder aspect-[4/3] text-xs">Bakery hero image</div>
-          <div>
-            <p className="section-label mb-4">Our story</p>
-            <blockquote className="text-3xl font-semibold leading-tight mb-6">
-              "Brunch isn't just for weekends - it's a daily indulgence"
+      <div className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="img-placeholder min-h-[480px] lg:min-h-[640px] w-full text-xs">Bakery hero image</div>
+          <div className="flex flex-col gap-5 text-left">
+            <p className="text-lg text-[#7b7b7b]">Our story</p>
+            <blockquote className="text-[55px] leading-[1.2] font-normal text-wire-black">
+              “Brunch isn&apos;t just for weekends - it&apos;s a daily indulgence”
             </blockquote>
-            <p className="text-sm text-wire-dark leading-relaxed mb-4">
-              Modern Bread & Bagels was established in 2018 with a simple but uncommon idea: that exceptional quality and inclusive baking go hand in hand. In our kitchens, gluten-free isn't a constraint, it's the starting point. Everything we make - from our legendary New York-style bagels to our holiday rugelach - is crafted with that ethos at the center.
-            </p>
-            <p className="text-sm text-wire-dark leading-relaxed mb-4">
-              We've built a family of bakeries across New York, New Jersey, and California, and we've watched those neighborhoods become ours. Our regulars know our bakers by name. Parents bring their kids in every Sunday. Offices order catering every Friday. That familiarity is something we've worked hard to earn and something we protect every day.
-            </p>
-            <p className="text-sm text-wire-dark leading-relaxed mb-4">
-              Modern is also certified Kosher under OU supervision, giving our observant customers confidence that every item they pick up meets the highest standards - not just in taste, but in trust.
-            </p>
-            <p className="text-sm text-wire-dark leading-relaxed">
-              Experience our commitment to extraordinary baked goods at any of our Modern Bread & Bagel locations.
-            </p>
-            <button className="mt-8 px-6 py-2.5 border border-wire-black text-sm font-medium hover:bg-wire-black hover:text-white transition-colors">
-              Continue
-            </button>
+            <div className="text-lg text-wire-black leading-[1.4] space-y-4">
+              <p>
+                Modern Bread & Bagels was born from a simple belief: that gluten-free doesn&apos;t mean compromise.
+                We set out to create bagels so good that nobody would miss the gluten. Our menu is entirely
+                gluten-free and nut-free, offering a safe and delicious experience for all. Every bagel, bread and
+                pastry is made with the same care as a neighborhood bakery that&apos;s been doing it for generations.
+                Everything is baked fresh daily and made in-house.
+              </p>
+              <p>
+                With locations on both coasts in LA, NYC, and NJ - and now shipping nationwide - the mission has never
+                changed: make the best baked goods, full stop.
+              </p>
+              <p>
+                Every month, we develop fun and unique specials because it&apos;s our mission to recreate treats and
+                items that may be missed when living a gluten-free, nut-free lifestyle. Exclusive to our Upper East
+                Side location, we also offer pan pizzas by the slice, with plans to bring this option to more of our
+                locations soon!
+              </p>
+              <p>
+                We take pride in our signature blend of coffee beans, crafted especially for us, delivering exceptional
+                espresso drinks to complement your meal.
+              </p>
+              <p>Experience our commitment to artisan production—come visit us at Modern Bread & Bagel!</p>
+            </div>
+            <Link to="/contact" className="btn-secondary inline-block self-start mt-2">
+              Contact us
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Origin story */}
-      <div className="border-t border-wire-pale py-16">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-4xl font-semibold leading-tight mb-6">
-                Modern Bread and Bagel was born out of love. Love for food, travel, and each other.
+      <div className="border-t border-wire-pale">
+        <div className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div className="flex flex-col gap-5 text-left order-2 lg:order-1">
+              <p className="text-lg text-[#7b7b7b]">Meet Orly & Josh</p>
+              <h2 className="text-[55px] leading-[1.2] font-normal text-wire-black">
+                Modern Bread and Bagel was born out of love.
+                <br />
+                Love for food, travel, and each other.
               </h2>
+              <div className="text-lg text-wire-black leading-[1.4] space-y-4">
+                <p>
+                  When Orly Gottesman&apos;s husband, Josh Borenstein, was diagnosed with celiac disease, she became
+                  determined to recreate his favorite foods without gluten, but with all the flavor and texture he
+                  loved. The two met in an a cappella group at NYU and quickly bonded over music and their shared
+                  passion for food.
+                </p>
+                <p>
+                  After college, they moved to Paris, where Josh launched a startup and Orly, unable to work without a
+                  visa, began apprenticing at a local pastry shop. What started as a way to learn the classics soon
+                  ignited a passion for baking. Orly continued her culinary training at Le Cordon Bleu in Sydney,
+                  where she also conducted an independent study in gluten-free patisserie. After years of research,
+                  she created Blends by Orly - a line of gluten-free flour blends and baking mixes now used by
+                  professional chefs, bakeries, and home bakers alike.
+                </p>
+                <p>
+                  While walking through the Upper West Side, Josh spotted a bagel shop for rent and turned to Orly:
+                  &quot;You make the most amazing gluten-free food - it&apos;s time to open our own place.&quot; That
+                  spark became Modern Bread and Bagel.
+                </p>
+                <p>
+                  At Modern, everything is 100% gluten-free and inspired by the flavors of the cities Orly and Josh
+                  have called home - New York, Paris, Sydney, and Tel Aviv. From freshly baked bagels to signature
+                  pastries and vibrant brunch dishes, Modern is redefining gluten-free food - one bite at a time.
+                </p>
+                <p>Come visit us in NYC, LA, or find us online to taste what gluten-free should be.</p>
+              </div>
             </div>
-            <div className="text-sm text-wire-dark leading-relaxed space-y-4">
-              <p>
-                Orly Gottesman was diagnosed with celiac disease in 2015. At the time, she was working as a pastry chef in New York, surrounded by the foods she loved - and suddenly unable to eat any of them. The gluten-free alternatives she found were, without exception, disappointing.
-              </p>
-              <p>
-                She spent three years in her home kitchen developing recipes from scratch. Testing flour blends. Experimenting with fermentation. Rebuilding the structure of bread without the protein that makes bread what it is. Her husband David - her business partner in every sense - supported the project until it became an obsession, and then a mission.
-              </p>
-              <p>
-                In 2018, they opened the first Modern Bread & Bagels on the Upper West Side of Manhattan. The line stretched around the block on day one, and it hasn't shortened since. People who hadn't eaten a real bagel in years wept. That's not an exaggeration.
-              </p>
-              <p>
-                All of this to say: we know what it means to miss food. And we know what it means to get it back.
-              </p>
+            <div className="img-placeholder min-h-[480px] lg:min-h-[640px] w-full text-xs order-1 lg:order-2">
+              Orly & Josh image
             </div>
           </div>
         </div>
       </div>
 
-      {/* Straight from our founders */}
-      <div className="border-t border-wire-pale py-16 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <p className="section-label mb-8">Straight from our founders</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {founders.map(f => (
-              <div key={f.name} className="bg-white border border-wire-pale p-6">
-                <div className="img-placeholder aspect-square mb-4 text-xs">Portrait</div>
-                <p className="font-semibold text-sm mb-0.5">{f.name}</p>
-                <p className="text-xs text-wire-mid mb-4">{f.title}</p>
-                <p className="text-xs text-wire-dark leading-relaxed italic">{f.quote}</p>
+      <div className="border-t border-wire-pale bg-white px-6 py-14 lg:py-[75px]">
+        <div className="max-w-[1440px] mx-auto">
+          <h2 className="text-[32px] font-medium leading-[1.4] text-wire-black mb-10">Straight from our customers</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-7">
+            {customers.map((c, i) => (
+              <div
+                key={`${c.name}-${i}`}
+                className="bg-[#f6f6f6] p-7 min-h-[162px] flex flex-col justify-between gap-4"
+              >
+                <p className="text-lg font-semibold leading-[1.4] text-wire-black">{c.quote}</p>
+                <p className="text-lg font-normal leading-[1.4] text-wire-black">{c.name}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* 100% Gluten Free */}
-      <div className="border-t border-wire-pale py-16">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-2 gap-16">
-            <div>
-              <p className="section-label mb-3">100% gluten free</p>
-              <h2 className="text-3xl font-semibold mb-6">Our gluten-free commitment</h2>
-              <p className="text-sm text-wire-dark leading-relaxed mb-8">
-                We are a dedicated gluten-free facility - meaning no wheat, barley, or rye ever enters our kitchens in any form. Not in ingredients, not in equipment, not in packaging, not from employees. This matters because cross-contamination is the single biggest risk for people with celiac disease, and we take it seriously.
-              </p>
-              <div className="space-y-5">
-                {gfPoints.map(p => (
-                  <div key={p.label}>
-                    <p className="font-semibold text-sm mb-1">{p.label}</p>
-                    <p className="text-sm text-wire-mid">{p.body}</p>
+      <div className="border-t border-wire-pale">
+        <div className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div className="flex flex-col gap-7">
+              <div className="flex flex-col gap-5">
+                <p className="text-lg text-[#7b7b7b]">Our gluten free commitment</p>
+                <h2 className="text-[55px] leading-[1.2] font-normal text-wire-black">100% gluten free</h2>
+                <div className="text-lg text-wire-black leading-[1.4] space-y-4">
+                  <p>
+                    Our entire menu - every bagel, every bread, every pastry - is made in our dedicated gluten-free,
+                    nut-free kitchen. If you&apos;re celiac, highly sensitive, or simply choosing to live gluten-free,
+                    you can order anything on our menu with complete confidence.
+                  </p>
+                  <p>100% dedicated facility with zero shared equipment, zero cross-contamination risk, and zero compromises.</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[22px]">
+                {gfBoxes.map((box) => (
+                  <div
+                    key={box.title}
+                    className="border border-[#7b7b7b] px-5 py-4 flex flex-col gap-3 max-w-[437px]"
+                  >
+                    <p className="text-lg font-semibold leading-[1.4]">{box.title}</p>
+                    <p className="text-lg leading-[1.4]">{box.body}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="img-placeholder aspect-[4/3] text-xs">Gluten-free kitchen photo</div>
+            <div className="img-placeholder min-h-[480px] lg:min-h-[640px] w-full text-xs">Gluten-free kitchen photo</div>
           </div>
         </div>
       </div>
 
-      {/* Certified Kosher */}
-      <div className="border-t border-wire-pale py-16 bg-wire-bg">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-2 gap-16">
-            <div>
-              <p className="section-label mb-3">Certified Kosher</p>
-              <h2 className="text-3xl font-semibold mb-6">Our Kashrut standards</h2>
-              <p className="text-sm text-wire-dark leading-relaxed mb-8">
-                Modern Bread & Bagels holds Kosher certification under the supervision of the Orthodox Union (OU). Every product, ingredient, and process in our kitchens meets the strictest Kosher standards.
-              </p>
-              <div className="space-y-5">
-                {kosherPoints.map(p => (
-                  <div key={p.label}>
-                    <p className="font-semibold text-sm mb-1">{p.label}</p>
-                    <p className="text-sm text-wire-mid">{p.body}</p>
+      <div className="border-t border-wire-pale bg-wire-bg">
+        <div className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div className="flex flex-col gap-7">
+              <div className="flex flex-col gap-5">
+                <p className="text-lg text-[#7b7b7b]">Kashrut</p>
+                <h2 className="text-[55px] leading-[1.2] font-normal text-wire-black">Certified Kosher.</h2>
+                <div className="text-lg text-wire-black leading-[1.4] space-y-4">
+                  <p>
+                    All Modern Bread & Bagels products and locations are under the Kosher certification of IKC (Rabbi Zev
+                    Schwartz).
+                  </p>
+                  <p>
+                    Click{' '}
+                    <a href="#" className="underline hover:text-wire-dark">
+                      HERE
+                    </a>{' '}
+                    to watch a Facebook live interview discussing our kashrut with Great Kosher Restaurant Foodies.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[22px]">
+                {kosherBoxes.map((box) => (
+                  <div
+                    key={box.title}
+                    className="border border-[#7b7b7b] px-5 py-4 flex flex-col gap-3 max-w-[437px]"
+                  >
+                    <p className="text-lg font-semibold leading-[1.4]">{box.title}</p>
+                    <div className="text-lg leading-[1.4]">{box.body}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="img-placeholder aspect-[4/3] text-xs">Kosher kitchen photo</div>
+            <div className="img-placeholder min-h-[480px] lg:min-h-[640px] w-full text-xs">Kosher kitchen photo</div>
           </div>
         </div>
       </div>
 
-      <ComesSayHello />
+      <ComesSayHello showEyebrow={false} buttonVariant="outline" />
       <Footer />
     </div>
   )

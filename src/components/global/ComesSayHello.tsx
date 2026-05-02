@@ -1,16 +1,23 @@
 import { Link } from 'react-router-dom'
 
-export default function ComesSayHello() {
+type ComesSayHelloProps = {
+  showEyebrow?: boolean
+  buttonVariant?: 'primary' | 'outline'
+}
+
+export default function ComesSayHello({ showEyebrow = true, buttonVariant = 'primary' }: ComesSayHelloProps) {
+  const btnClass = buttonVariant === 'outline' ? 'btn-secondary inline-block' : 'btn-primary inline-block'
+
   return (
-    <section>
-      <div className="max-w-[1440px] mx-auto px-6 py-20 grid grid-cols-2 gap-16 items-center">
+    <section className="border-t border-wire-pale bg-white">
+      <div className="max-w-[1440px] mx-auto px-6 py-16 lg:py-[62px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
-          <p className="section-label mb-3">Find us in person</p>
-          <h2 className="text-4xl font-semibold leading-tight mb-4">Come say hello</h2>
-          <p className="text-wire-mid leading-relaxed mb-8 max-w-sm">
+          {showEyebrow && <p className="section-label mb-3">Find us in person</p>}
+          <h2 className="text-[32px] font-medium leading-[1.4] mb-6 text-wire-black">Come say hello</h2>
+          <p className="text-lg text-wire-black leading-[1.4] mb-8 max-w-xl">
             From the iconic streets of the Upper West Side to our sunny kitchens in California, our doors are open and the ovens are on. Come say hello at your neighborhood Modern.
           </p>
-          <Link to="/locations" className="btn-primary inline-block">To all locations</Link>
+          <Link to="/locations" className={btnClass}>To all locations</Link>
         </div>
         <div className="relative">
           {/* Map placeholder */}
