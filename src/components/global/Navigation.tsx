@@ -8,6 +8,9 @@ type DropdownId = 'products' | 'locations' | 'about' | 'gift-card' | 'order' | n
 
 const pub = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
+const navLogoImg =
+  'block w-auto max-w-[185px] object-contain object-left brightness-[1.12] contrast-[1.02]'
+
 export default function Navigation() {
   const [popupOpen, setPopupOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<DropdownId>(null)
@@ -50,14 +53,17 @@ export default function Navigation() {
 
           {/* Logo + gluten-free badge */}
           <div className="flex items-center gap-5 shrink-0">
-            <Link to="/home" className="flex items-center gap-2 min-w-0" aria-label="Modern Bread & Bagels">
+            <Link
+              to="/home"
+              className="flex shrink-0 items-center rounded-md bg-wire-bg/35 px-2 py-1 ring-1 ring-wire-ghost/60"
+              aria-label="Modern Bread & Bagels"
+            >
               <img
-                src={pub('assets/logo.svg')}
+                src={pub('assets/modern-logo.png')}
                 alt=""
-                className="h-6 w-auto object-contain shrink-0"
+                className={`${navLogoImg} h-7`}
                 aria-hidden
               />
-              <span className="text-sm font-semibold text-wire-black truncate">Modern Bread & Bagels</span>
             </Link>
             {/* "100% gluten free" badge - rounded tag, clickable, opens an info
                 tooltip explaining the dedicated gluten-free, nut-free facility. */}
@@ -367,9 +373,13 @@ export default function Navigation() {
           <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
           <div className="absolute top-0 left-0 bottom-0 w-72 bg-white overflow-y-auto p-6">
             <div className="flex items-center justify-between gap-3 mb-8">
-              <div className="flex items-center gap-2 min-w-0">
-                <img src={pub('assets/logo.svg')} alt="" className="h-5 w-auto object-contain shrink-0" aria-hidden />
-                <span className="text-sm font-semibold text-wire-black truncate">Modern Bread & Bagels</span>
+              <div className="flex shrink-0 items-center rounded-md bg-wire-bg/35 px-2 py-1 ring-1 ring-wire-ghost/60">
+                <img
+                  src={pub('assets/modern-logo.png')}
+                  alt=""
+                  className={`${navLogoImg} h-6`}
+                  aria-hidden
+                />
               </div>
               <button onClick={() => setMobileOpen(false)}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12"/></svg>
