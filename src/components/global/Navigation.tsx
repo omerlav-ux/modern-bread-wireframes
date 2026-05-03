@@ -6,6 +6,8 @@ import MiniCart from './MiniCart'
 
 type DropdownId = 'products' | 'locations' | 'about' | 'gift-card' | 'order' | null
 
+const pub = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 export default function Navigation() {
   const [popupOpen, setPopupOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<DropdownId>(null)
@@ -48,13 +50,14 @@ export default function Navigation() {
 
           {/* Logo + gluten-free badge */}
           <div className="flex items-center gap-5 shrink-0">
-            <Link to="/home" className="flex items-center" aria-label="Modern Bread & Bagels">
+            <Link to="/home" className="flex items-center gap-2 min-w-0" aria-label="Modern Bread & Bagels">
               <img
-                src="assets/modern-logo.png"
-                alt="Modern Bread & Bagels"
-                className="h-6 w-auto object-contain"
-                style={{ mixBlendMode: 'multiply', filter: 'brightness(1.08) contrast(1.05)' }}
+                src={pub('assets/logo.svg')}
+                alt=""
+                className="h-6 w-auto object-contain shrink-0"
+                aria-hidden
               />
+              <span className="text-sm font-semibold text-wire-black truncate">Modern Bread & Bagels</span>
             </Link>
             {/* "100% gluten free" badge - rounded tag, clickable, opens an info
                 tooltip explaining the dedicated gluten-free, nut-free facility. */}
@@ -69,7 +72,7 @@ export default function Navigation() {
                     : 'bg-wire-ghost text-wire-dark hover:bg-wire-pale'
                 }`}
               >
-                <img src="assets/gluten-free.svg" alt="" aria-hidden="true" className="w-3.5 h-3.5" />
+                <img src={pub('assets/gluten-free.svg')} alt="" aria-hidden="true" className="w-3.5 h-3.5" />
                 <span>100% gluten free</span>
               </button>
               {glutenInfoOpen && (
@@ -85,7 +88,7 @@ export default function Navigation() {
                     </svg>
                   </button>
                   <div className="flex items-start gap-2 mb-3 pr-6">
-                    <img src="assets/gluten-free.svg" alt="" aria-hidden="true" className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <img src={pub('assets/gluten-free.svg')} alt="" aria-hidden="true" className="w-4 h-4 mt-0.5 flex-shrink-0" />
                     <p className="text-xs font-semibold uppercase tracking-wider">100% gluten free</p>
                   </div>
                   <p className="text-xs text-wire-dark leading-relaxed mb-3">
@@ -363,8 +366,11 @@ export default function Navigation() {
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
           <div className="absolute top-0 left-0 bottom-0 w-72 bg-white overflow-y-auto p-6">
-            <div className="flex items-center justify-between mb-8">
-              <img src="assets/modern-logo.png" alt="Modern Bread & Bagels" className="h-5 w-auto object-contain" style={{ mixBlendMode: 'multiply', filter: 'brightness(1.08) contrast(1.05)' }} />
+            <div className="flex items-center justify-between gap-3 mb-8">
+              <div className="flex items-center gap-2 min-w-0">
+                <img src={pub('assets/logo.svg')} alt="" className="h-5 w-auto object-contain shrink-0" aria-hidden />
+                <span className="text-sm font-semibold text-wire-black truncate">Modern Bread & Bagels</span>
+              </div>
               <button onClick={() => setMobileOpen(false)}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
