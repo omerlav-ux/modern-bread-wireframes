@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { HashRouter, Routes, Route, Navigate, Link, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ShippingCatalogPage from './pages/ShippingCatalogPage'
 import ShippingPDPPage from './pages/ShippingPDPPage'
@@ -17,6 +17,7 @@ import ContactUsPage from './pages/ContactUsPage'
 import PressPage from './pages/PressPage'
 import WhereToBuyPage from './pages/WhereToBuyPage'
 import SiteIndex from './pages/SiteIndex'
+import MonthlySpecialsWidget from './components/global/MonthlySpecialsWidget'
 
 // Reset scroll to the top whenever the route changes - without this, React
 // Router preserves the previous scroll offset and new pages open mid-way down.
@@ -52,12 +53,7 @@ export default function App() {
         <Route path="/where-to-buy" element={<WhereToBuyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Link
-        to="/contact"
-        className="fixed bottom-6 right-6 z-50 bg-wire-mid text-white px-5 py-3 text-sm hover:bg-wire-dark transition-colors shadow-md"
-      >
-        Contact us
-      </Link>
+      <MonthlySpecialsWidget />
     </HashRouter>
   )
 }

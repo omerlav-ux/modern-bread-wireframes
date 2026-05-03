@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { dinnerLocations } from '../constants/dinnerLocations'
 import AnnouncementBar from '../components/global/AnnouncementBar'
 import Navigation from '../components/global/Navigation'
 import Footer from '../components/global/Footer'
 import ComesSayHello from '../components/global/ComesSayHello'
 
 const tabs = ['About', 'At this location', 'Menu']
+
+const dinnerLocationSlugs = new Set(dinnerLocations.map((l) => l.slug))
 
 const menuCategories = ['Breakfast', 'Sandwiches', 'Salads', 'Pizza Menu', 'Deli', 'Coffee Bar']
 
@@ -109,11 +112,14 @@ function OpeningHours() {
 }
 
 export default function LocationDetailPage() {
+  const { store } = useParams()
   const [activeTab, setActiveTab] = useState('About')
   const [activeMenu, setActiveMenu] = useState('Breakfast')
 
+  const isDinnerLocationPage = store ? dinnerLocationSlugs.has(store) : false
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen ${isDinnerLocationPage ? 'bg-[#EEEEEE]' : 'bg-white'}`}>
       <AnnouncementBar />
       <Navigation />
 
@@ -129,7 +135,7 @@ export default function LocationDetailPage() {
       </div>
 
       {/* Page header */}
-      <div className="bg-wire-bg py-10">
+      <div className={`py-10 ${isDinnerLocationPage ? 'bg-[#EEEEEE]' : 'bg-wire-bg'}`}>
         <div className="max-w-[1440px] mx-auto px-6">
           <h1 className="text-4xl font-semibold">Upper west side</h1>
         </div>

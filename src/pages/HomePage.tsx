@@ -5,6 +5,7 @@ import Navigation from '../components/global/Navigation'
 import Footer from '../components/global/Footer'
 import ComesSayHello from '../components/global/ComesSayHello'
 import OrderRoutingPopup from '../components/global/OrderRoutingPopup'
+import { dinnerLocations } from '../constants/dinnerLocations'
 
 // ── Hero slides (4 slides from Figma) ──────────────────────────────────────
 type HeroSlide =
@@ -71,12 +72,6 @@ const pressLogos = [
   { src: 'assets/press-4.png', alt: 'gff Magazine' },
   { src: 'assets/press-5.png', alt: 'SECRET NYC' },
   { src: 'assets/press-6.png', alt: 'Apple Podcasts' },
-]
-
-const dinnerLocations = [
-  { name: 'Midtown', concept: 'BigFish by Modern', hours: 'Sunday to Thursday: 5:00 PM to 9:30 PM', slug: 'midtown-east' },
-  { name: 'Upper East Side', concept: 'Modern Italia', hours: 'Sun-Wed: 5-10 PM | Thu-Sat: 5 PM-Midnight', slug: 'upper-east-side' },
-  { name: 'Englewood', concept: 'Good Food for Dinner', hours: 'Thursday: 5:00 PM to 10:00 PM', slug: 'englewood' },
 ]
 
 function HeroContent({ slide, onOrder }: { slide: HeroSlide; onOrder: () => void }) {
@@ -204,69 +199,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Shop by category ── */}
-      <section className="py-12">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="flex items-end justify-between mb-6">
-            <h2 className="text-xl">Shop by category</h2>
-            <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">
-              View all products →
-            </Link>
-          </div>
-          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
-            {ourProducts.map((p) => (
-              <Link key={p.name} to={p.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
-                <div className="img-placeholder aspect-[4/3] mb-3 relative">
-                  <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-                <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Our Monthly Specials (split layout — matches Figma 19361:4240) ── */}
-      <section className="py-16 bg-[#EEEEEE]">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-center">
-            <div className="flex flex-col gap-8 text-left max-w-lg">
-              <div className="space-y-2">
-                <h2 className="text-[32px] font-medium leading-snug text-wire-black">Our Monthly Specials</h2>
-                <p className="text-sm text-wire-mid leading-relaxed">
-                  Each month we bake something new — limited-run flavors and seasonal favorites, only available while they
-                  last.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  to="/shipping"
-                  className="inline-flex items-center justify-center bg-wire-black text-white px-7 py-3 text-sm font-medium hover:bg-wire-dark transition-colors"
-                >
-                  Order shipping
-                </Link>
-                <Link
-                  to="/pre-orders"
-                  className="inline-flex items-center justify-center bg-wire-black text-white px-7 py-3 text-sm font-medium hover:bg-wire-dark transition-colors"
-                >
-                  Pre-order
-                </Link>
-              </div>
-            </div>
-            <div
-              className="img-placeholder w-full rounded-none border-0 aspect-[1052/530] lg:min-h-[320px]"
-              style={{ background: '#c8c8c8' }}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* ── Now serving dinner ── */}
-      <section className="py-16">
+      <section className="bg-[#EEEEEE] py-16">
         <div className="max-w-[1440px] mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl mb-2">Mornings are our thing. But evenings aren't bad either.</h2>
@@ -290,6 +224,32 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Shop by category ── */}
+      <section className="py-12">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <div className="flex items-end justify-between mb-6">
+            <h2 className="text-xl">Shop by category</h2>
+            <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">
+              View all products →
+            </Link>
+          </div>
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
+            {ourProducts.map((p) => (
+              <Link key={p.name} to={p.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                <div className="img-placeholder aspect-[4/3] mb-3 relative">
+                  <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+                <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
               </Link>
             ))}
           </div>
