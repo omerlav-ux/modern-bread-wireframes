@@ -54,7 +54,7 @@ try {
 } catch {
   log('root mount wait soft-failed')
 }
-await new Promise((r) => setTimeout(r, 4000))
+await new Promise((r) => setTimeout(r, 8000))
 
 log('fetch capture.js')
 const jsRes = await context.request.get('https://mcp.figma.com/mcp/html-to-design/capture.js')

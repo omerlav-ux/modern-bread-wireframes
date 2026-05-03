@@ -140,49 +140,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Our Specials ── */}
-      <section className="py-16">
+      {/* ── Shop favorites ── */}
+      <section className="py-12 bg-wire-bg">
         <div className="max-w-[1440px] mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl mb-2">Our Monthly Specials</h2>
-            <p className="text-sm text-wire-mid max-w-sm mx-auto">
-              Each month we bake something new — limited-run flavors and seasonal favorites, only available while they last.
-            </p>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl">Shop favorites</h2>
+            <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">
+              View all products →
+            </Link>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-4 flex md:flex-none overflow-x-auto gap-3 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory no-scrollbar">
-            <Link to="/shipping" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
-              <div className="img-placeholder aspect-square" />
-              <div className="p-6 text-center">
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
-                  Order shipping
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
+            {shopFavorites.map((p) => (
+              <Link key={p.name} to={p.href} className="group block bg-white flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                <div className="img-placeholder aspect-square relative">
+                  {p.badge && (
+                    <span
+                      className="placeholder-badge absolute top-2 left-2 bg-white text-[10px] font-semibold px-2 py-0.5 border border-wire-pale"
+                      style={{ color: '#222' }}
+                    >
+                      {p.badge}
+                    </span>
+                  )}
                 </div>
-              </div>
-            </Link>
-            <Link to="/pre-orders" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
-              <div className="img-placeholder aspect-square" />
-              <div className="p-6 text-center">
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
-                  Pre-order
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                <div className="p-3">
+                  <p className="text-sm text-wire-dark group-hover:underline mb-1">{p.name}</p>
+                  <p className="text-sm font-semibold">{p.price}</p>
                 </div>
-              </div>
-            </Link>
-            <Link to="#" className="group bg-wire-bg hover:bg-wire-ghost transition-colors flex-shrink-0 w-[85vw] md:w-auto snap-start">
-              <div className="img-placeholder aspect-square" />
-              <div className="p-6 text-center">
-                <div className="inline-flex items-center gap-2 text-sm font-medium text-wire-black group-hover:underline">
+              </Link>
+            ))}
+            <div className="flex flex-col flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+              <div className="img-placeholder aspect-square" style={{ background: '#a0a0a0' }} />
+              <div className="p-3 bg-wire-ghost flex-1 flex flex-col justify-center">
+                <p className="text-sm font-semibold mb-2">Order same day delivery/pickup</p>
+                <Link to="#" className="text-sm text-wire-dark flex items-center gap-1 hover:underline">
                   Order for today
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </div>
+                </Link>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -212,62 +209,58 @@ export default function HomePage() {
         <div className="max-w-[1440px] mx-auto px-6">
           <div className="flex items-end justify-between mb-6">
             <h2 className="text-xl">Shop by category</h2>
-            <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">View all products →</Link>
+            <Link to="/shipping" className="text-sm text-wire-mid hover:text-wire-black underline shrink-0">
+              View all products →
+            </Link>
           </div>
           <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
-              {ourProducts.map((p) => (
-                <Link key={p.name} to={p.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
-                  <div className="img-placeholder aspect-[4/3] mb-3 relative">
-                    <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </span>
-                  </div>
-                  <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
-                </Link>
-              ))}
+            {ourProducts.map((p) => (
+              <Link key={p.name} to={p.href} className="group block flex-shrink-0 w-[70vw] sm:w-auto snap-start">
+                <div className="img-placeholder aspect-[4/3] mb-3 relative">
+                  <span className="placeholder-badge absolute bottom-2 right-2 w-7 h-7 bg-white border border-wire-pale flex items-center justify-center group-hover:bg-wire-black group-hover:border-wire-black transition-colors">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="#222" viewBox="0 0 24 24" style={{ color: undefined }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+                <p className="text-sm text-wire-dark group-hover:underline">{p.name}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Shop favorites ── */}
-      <section className="py-12 bg-wire-bg">
+      {/* ── Our Monthly Specials (split layout — matches Figma 19361:4240) ── */}
+      <section className="py-16 bg-[#EEEEEE]">
         <div className="max-w-[1440px] mx-auto px-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl">Shop favorites</h2>
-          </div>
-          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 flex sm:flex-none overflow-x-auto gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 snap-x snap-mandatory no-scrollbar">
-              {/* First 3 product cards */}
-              {shopFavorites.map((p) => (
-                <Link key={p.name} to={p.href} className="group block bg-white flex-shrink-0 w-[70vw] sm:w-auto snap-start">
-                  <div className="img-placeholder aspect-square relative">
-                    {p.badge && (
-                      <span
-                        className="placeholder-badge absolute top-2 left-2 bg-white text-[10px] font-semibold px-2 py-0.5 border border-wire-pale"
-                        style={{ color: '#222' }}
-                      >
-                        {p.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-3">
-                    <p className="text-sm text-wire-dark group-hover:underline mb-1">{p.name}</p>
-                    <p className="text-sm font-semibold">{p.price}</p>
-                  </div>
-                </Link>
-              ))}
-              {/* 4th card: CTA tile */}
-              <div className="flex flex-col flex-shrink-0 w-[70vw] sm:w-auto snap-start">
-                <div className="img-placeholder aspect-square" style={{ background: '#a0a0a0' }} />
-                <div className="p-3 bg-wire-ghost flex-1 flex flex-col justify-center">
-                  <p className="text-sm font-semibold mb-2">Order same day delivery/pickup</p>
-                  <Link to="#" className="text-sm text-wire-dark flex items-center gap-1 hover:underline">
-                    Order for today
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
-                  </Link>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14 items-center">
+            <div className="flex flex-col gap-8 text-left max-w-lg">
+              <div className="space-y-2">
+                <h2 className="text-[32px] font-medium leading-snug text-wire-black">Our Monthly Specials</h2>
+                <p className="text-sm text-wire-mid leading-relaxed">
+                  Each month we bake something new — limited-run flavors and seasonal favorites, only available while they
+                  last.
+                </p>
               </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  to="/shipping"
+                  className="inline-flex items-center justify-center bg-wire-black text-white px-7 py-3 text-sm font-medium hover:bg-wire-dark transition-colors"
+                >
+                  Order shipping
+                </Link>
+                <Link
+                  to="/pre-orders"
+                  className="inline-flex items-center justify-center bg-wire-black text-white px-7 py-3 text-sm font-medium hover:bg-wire-dark transition-colors"
+                >
+                  Pre-order
+                </Link>
+              </div>
+            </div>
+            <div
+              className="img-placeholder w-full rounded-none border-0 aspect-[1052/530] lg:min-h-[320px]"
+              style={{ background: '#c8c8c8' }}
+            />
           </div>
         </div>
       </section>
