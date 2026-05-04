@@ -8,6 +8,8 @@ type DropdownId = 'products' | 'locations' | 'about' | 'gift-card' | 'order' | n
 
 const pub = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
+const navLogoSrc = `${pub('assets/modern-logo.png')}?v=3`
+
 const navLogoImg =
   'block w-auto max-w-[185px] object-contain object-left brightness-[1.12] contrast-[1.02]'
 
@@ -59,7 +61,7 @@ export default function Navigation() {
               aria-label="Modern Bread & Bagels"
             >
               <img
-                src={pub('assets/modern-logo.png')}
+                src={navLogoSrc}
                 alt=""
                 className={`${navLogoImg} h-7`}
                 aria-hidden
@@ -375,7 +377,7 @@ export default function Navigation() {
             <div className="flex items-center justify-between gap-3 mb-8">
               <div className="flex shrink-0 items-center rounded-md bg-wire-bg/35 px-2 py-1 ring-1 ring-wire-ghost/60">
                 <img
-                  src={pub('assets/modern-logo.png')}
+                  src={navLogoSrc}
                   alt=""
                   className={`${navLogoImg} h-6`}
                   aria-hidden

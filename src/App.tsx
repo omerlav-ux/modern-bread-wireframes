@@ -29,6 +29,13 @@ function ScrollToTop() {
   return null
 }
 
+// Conditionally render the Monthly Specials Widget only on home page
+function ConditionalMonthlySpecialsWidget() {
+  const { pathname } = useLocation()
+  const isHomePage = pathname === '/home'
+  return isHomePage ? <MonthlySpecialsWidget /> : null
+}
+
 export default function App() {
   return (
     <HashRouter>
@@ -53,7 +60,7 @@ export default function App() {
         <Route path="/where-to-buy" element={<WhereToBuyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <MonthlySpecialsWidget />
+      <ConditionalMonthlySpecialsWidget />
     </HashRouter>
   )
 }
