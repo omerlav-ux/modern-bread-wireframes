@@ -6,7 +6,7 @@ interface Props {
 
 const options = [
   {
-    title: 'Get it today',
+    title: 'Same day orders',
     body: 'Same-day delivery or pickup from one of our stores',
     href: '#external',
     external: true,
@@ -17,7 +17,7 @@ const options = [
     ),
   },
   {
-    title: 'Pre-order',
+    title: 'Pre-orders',
     body: 'Schedule a delivery or pickup for tomorrow or later',
     href: '/pre-orders',
     external: false,
@@ -28,7 +28,7 @@ const options = [
     ),
   },
   {
-    title: 'Catering & events',
+    title: 'Catering',
     body: 'Platters and boxes for groups and celebrations',
     href: '/catering/order',
     external: false,

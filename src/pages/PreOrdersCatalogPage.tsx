@@ -5,6 +5,8 @@ import Navigation from '../components/global/Navigation'
 import Footer from '../components/global/Footer'
 import ComesSayHello from '../components/global/ComesSayHello'
 import PreOrderProductPopup, { type PreOrderProduct } from '../components/global/PreOrderProductPopup'
+import LocalOrderLocationModal from '../components/global/LocalOrderLocationModal'
+import type { StoreLocation } from '../constants/storeLocations'
 
 const categories = ['April specials', 'Bagels', 'Pastries', 'Deli case', 'Bread']
 
@@ -22,6 +24,18 @@ const products = [
 export default function PreOrdersCatalogPage() {
   const [activeCategory, setActiveCategory] = useState('April specials')
   const [fulfillment, setFulfillment] = useState<'Pickup' | 'Delivery'>('Pickup')
+  const [pickedLocation, setPickedLocation] = useState<StoreLocation | null>(null)
+  const [showLocationGate, setShowLocationGate] = useState(true)
+
+  const openLocationGate = () => {
+    setPickedLocation(null)
+    setShowLocationGate(true)
+  }
+
+  const completeLocationGate = (loc: StoreLocation) => {
+    setPickedLocation(loc)
+    setShowLocationGate(false)
+  }
 
   // When this page is reached via a deep-link from another PDP (e.g. the
   // shipping PDP's "Pre-order for pickup" row), open the matching product as
@@ -60,54 +74,84 @@ export default function PreOrdersCatalogPage() {
         </div>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 py-8">
-        {/* Location + status */}
-        <div className="flex items-center gap-2 mb-4">
-          <svg className="w-4 h-4 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span className="text-sm text-wire-dark">Columbus Avenue</span>
-        </div>
-        <div className="flex items-center gap-2 mb-5">
-          <span className="inline-flex items-center gap-1.5 border border-wire-pale px-3 py-1 text-xs font-medium rounded-full">
-            <span className="w-1.5 h-1.5 bg-green-600 rounded-full" />
-            Accepting orders
-          </span>
-          <span className="border border-wire-pale px-3 py-1 text-xs font-medium rounded-full">Min order · $25</span>
-        </div>
-
-        {/* Pickup / Delivery toggle */}
-        <div className="flex border border-wire-pale w-fit mb-5">
-          {(['Pickup', 'Delivery'] as const).map(t => (
+      {pickedLocation !== null && (
+        <div className="max-w-[1440px] mx-auto px-6 pt-6">
+          <div className="bg-wire-ghost border border-wire-pale py-3 px-5 flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2 min-w-0">
+              <svg className="w-4 h-4 text-wire-mid shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="truncate">
+                Pre-order pickup at <strong>{pickedLocation.name}</strong>
+              </span>
+            </div>
             <button
-              key={t}
-              onClick={() => setFulfillment(t)}
-              className={`px-8 py-2 text-sm font-medium transition-colors ${
-                fulfillment === t ? 'bg-wire-black text-white' : 'text-wire-mid hover:bg-wire-ghost'
-              }`}
+              type="button"
+              onClick={openLocationGate}
+              className="text-xs border border-wire-pale bg-white px-3 py-1.5 hover:border-wire-black transition-colors shrink-0 ml-3"
             >
-              {t}
+              Change
             </button>
-          ))}
+          </div>
         </div>
+      )}
 
-        {/* Time + address */}
-        <div className="space-y-1 mb-8 text-xs text-wire-dark">
-          <div className="flex items-center gap-2">
-            <svg className="w-3.5 h-3.5 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>Pickup time: Tomorrow 9:03AM-9:15AM. <button className="underline text-wire-mid">Change</button></span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-3.5 h-3.5 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span>Pickup Address: 472 Columbus Avenue, New York, NY 10024. <button className="underline text-wire-mid">Change</button></span>
-          </div>
-        </div>
+      <div className={`max-w-[1440px] mx-auto px-6 ${pickedLocation !== null ? 'py-8' : 'py-0'}`}>
+        {pickedLocation !== null && (
+          <>
+            <div className="flex items-center gap-2 mb-4">
+              <svg className="w-4 h-4 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="text-sm text-wire-dark">{pickedLocation.name}</span>
+            </div>
+            <div className="flex items-center gap-2 mb-5">
+              <span className="inline-flex items-center gap-1.5 border border-wire-pale px-3 py-1 text-xs font-medium rounded-full">
+                <span className="w-1.5 h-1.5 bg-green-600 rounded-full" />
+                Accepting orders
+              </span>
+              <span className="border border-wire-pale px-3 py-1 text-xs font-medium rounded-full">Min order · $25</span>
+            </div>
+
+            <div className="flex border border-wire-pale w-fit mb-5">
+              {(['Pickup', 'Delivery'] as const).map(t => (
+                <button
+                  key={t}
+                  type="button"
+                  onClick={() => setFulfillment(t)}
+                  className={`px-8 py-2 text-sm font-medium transition-colors ${
+                    fulfillment === t ? 'bg-wire-black text-white' : 'text-wire-mid hover:bg-wire-ghost'
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            <div className="space-y-1 mb-8 text-xs text-wire-dark">
+              <div className="flex items-center gap-2">
+                <svg className="w-3.5 h-3.5 text-wire-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Pickup time: Tomorrow 9:03AM-9:15AM. <button type="button" className="underline text-wire-mid">Change</button></span>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <svg className="w-3.5 h-3.5 text-wire-mid shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>
+                  Pickup address: {pickedLocation.address}.{' '}
+                  <button type="button" onClick={openLocationGate} className="underline text-wire-mid">
+                    Change
+                  </button>
+                </span>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Category tabs - sticky under the nav, full-width bar */}
@@ -163,6 +207,12 @@ export default function PreOrdersCatalogPage() {
           onClose={() => setPopupProduct(null)}
         />
       )}
+
+      <LocalOrderLocationModal
+        open={showLocationGate && pickedLocation === null}
+        variant="pre-order"
+        onComplete={completeLocationGate}
+      />
     </div>
   )
 }

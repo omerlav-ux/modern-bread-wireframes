@@ -51,7 +51,7 @@ export default function MonthlySpecialsWidget() {
 
           <div className="mt-auto flex flex-row flex-wrap items-center gap-x-4 gap-y-2">
             <TertiaryLink to="/shipping">Order shipping</TertiaryLink>
-            <TertiaryLink to="/pre-orders">Pre order</TertiaryLink>
+            <TertiaryLink to="/pre-orders">Pre-orders</TertiaryLink>
           </div>
         </div>
       </div>

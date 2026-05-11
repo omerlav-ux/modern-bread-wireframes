@@ -40,16 +40,16 @@ const heroSlides: HeroSlide[] = [
 
 const orderMethods = [
   { label: 'Nationwide shipping', href: '/shipping' },
-  { label: 'Same day delivery', href: '#' },
-  { label: 'Pre-order', href: '/pre-orders' },
-  { label: 'Catering & events', href: '/catering/order' },
+  { label: 'Same day orders', href: '#' },
+  { label: 'Pre-orders', href: '/pre-orders' },
+  { label: 'Catering', href: '/catering/order' },
 ]
 
 const ourProducts = [
-  { name: 'Bagel favorites', href: '/shipping' },
+  { name: 'Bagels & breads', href: '/shipping' },
   { name: 'Cakes & sweets', href: '/shipping' },
-  { name: 'Baking mixes', href: '/shipping' },
-  { name: 'Seasonal specials', href: '/shipping' },
+  { name: 'Our specials', href: '/shipping' },
+  { name: 'Retail & swag', href: '/shipping' },
 ]
 
 const shopFavorites = [

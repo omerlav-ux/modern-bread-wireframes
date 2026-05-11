@@ -8,11 +8,13 @@ const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: 'Shop',
     links: [
-      { label: 'Explore all products', href: '/shipping' },
+      { label: 'All shipping products', href: '/shipping' },
       { label: 'Bagels & breads', href: '/shipping' },
       { label: 'Cakes & sweets', href: '/shipping' },
-      { label: 'Specials / seasonal', href: '/shipping' },
-      { label: 'Baking mixes', href: '/shipping' },
+      { label: 'Our specials', href: '/shipping' },
+      { label: 'Baking mixes (ship nationwide)', href: '/shipping?filter=baking-mixes' },
+      { label: 'Find mixes in stores & groceries', href: '/where-to-buy' },
+      { label: 'Retail — swag & gifts', href: '/shipping' },
       { label: 'Online gift card', href: '/gift-card' },
       { label: 'In-store gift card', href: TOAST_IN_STORE_GIFT_CARD_URL, external: true },
     ],
@@ -20,10 +22,10 @@ const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: 'Order',
     links: [
-      { label: 'Pre-order', href: '/pre-orders' },
-      { label: 'Same day delivery', href: '#' },
+      { label: 'Pre-orders', href: '/pre-orders' },
+      { label: 'Same day orders', href: '#' },
       { label: 'Nationwide shipping', href: '/shipping' },
-      { label: 'Catering & events', href: '/catering/order' },
+      { label: 'Catering', href: '/catering/order' },
     ],
   },
   {

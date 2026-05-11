@@ -6,7 +6,129 @@ import MiniCart from './MiniCart'
 
 type DropdownId = 'products' | 'locations' | 'about' | 'gift-card' | 'order' | null
 
+type ShopChannel = 'shipping' | 'preorder' | 'orderNow' | 'catering'
+
 const pub = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
+const shopChannels: { id: ShopChannel; label: string }[] = [
+  { id: 'shipping', label: 'Nationwide shipping' },
+  { id: 'preorder', label: 'Pre-orders' },
+  { id: 'orderNow', label: 'Same day orders' },
+  { id: 'catering', label: 'Catering' },
+]
+
+function shopCategoryLinks(channel: ShopChannel): { label: string; to: string }[] {
+  switch (channel) {
+    case 'shipping':
+      return [
+        { label: 'All items', to: '/shipping' },
+        { label: 'Bagels & breads', to: '/shipping' },
+        { label: 'Cakes & sweets', to: '/shipping' },
+        { label: 'Our specials', to: '/shipping' },
+        { label: 'Retail', to: '/shipping' },
+      ]
+    case 'preorder':
+      return [
+        { label: 'All items', to: '/pre-orders' },
+        { label: 'Bagels & breads', to: '/pre-orders' },
+        { label: 'Cakes & sweets', to: '/pre-orders' },
+        { label: 'Our specials', to: '/pre-orders' },
+        { label: 'Retail', to: '/pre-orders' },
+      ]
+    case 'orderNow':
+      return [
+        { label: 'All items', to: '#' },
+        { label: 'Bagels & breads', to: '#' },
+        { label: 'Cakes & sweets', to: '#' },
+        { label: 'Our specials', to: '#' },
+      ]
+    case 'catering':
+      return [
+        { label: 'All items', to: '/catering/order' },
+        { label: 'Bagels & breads', to: '/catering/order' },
+        { label: 'Cakes & sweets', to: '/catering/order' },
+        { label: 'Our specials', to: '/catering/order' },
+      ]
+    default:
+      return []
+  }
+}
+
+function bakingMixesColumn(
+  channel: ShopChannel,
+): { title: string; links: { label: string; to: string }[] } | null {
+  switch (channel) {
+    case 'shipping':
+      return {
+        title: 'Baking mixes',
+        links: [
+          { label: 'Shop baking mixes online', to: '/shipping?filter=baking-mixes' },
+          { label: 'Find mixes in stores & groceries', to: '/where-to-buy' },
+        ],
+      }
+    case 'preorder':
+      return {
+        title: 'Baking mixes',
+        links: [
+          { label: 'Shop baking mixes online', to: '/pre-orders?filter=baking-mixes' },
+          { label: 'Find mixes in stores & groceries', to: '/where-to-buy' },
+        ],
+      }
+    default:
+      return null
+  }
+}
+
+function ShopMegaMenuBrowsePanel({
+  shopChannel,
+  onPickLink,
+}: {
+  shopChannel: ShopChannel
+  onPickLink: () => void
+}) {
+  const active = shopChannels.find((c) => c.id === shopChannel)!
+  const mixesCol = bakingMixesColumn(shopChannel)
+  return (
+    <div className="flex flex-col flex-1">
+      <h3 className="text-[22px] font-semibold text-wire-black tracking-tight mb-6">{active.label}</h3>
+      <div className="flex gap-8 lg:gap-12 flex-wrap lg:flex-nowrap items-start">
+        <div
+          className={
+            mixesCol
+              ? 'min-w-[140px] shrink-0 max-w-[240px]'
+              : 'min-w-[160px] flex-1 max-w-none lg:max-w-md'
+          }
+        >
+          <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">Shop by category</p>
+          <ul className="space-y-2.5">
+            {shopCategoryLinks(shopChannel).map((l) => (
+              <li key={l.label}>
+                <Link to={l.to} onClick={onPickLink} className="text-sm text-wire-dark hover:text-wire-black hover:underline">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {mixesCol && (
+          <div className="min-w-[140px] shrink-0 max-w-[240px]">
+            <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">{mixesCol.title}</p>
+            <ul className="space-y-2.5">
+              {mixesCol.links.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} onClick={onPickLink} className="text-sm text-wire-dark hover:text-wire-black hover:underline">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div className="img-placeholder w-full max-w-[200px] h-[140px] shrink-0 hidden xl:block self-start ml-auto" />
+      </div>
+    </div>
+  )
+}
 
 const navLogoSrc = `${pub('assets/modern-logo.png')}?v=3`
 
@@ -16,7 +138,9 @@ const navLogoImg =
 export default function Navigation() {
   const [popupOpen, setPopupOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<DropdownId>(null)
+  const [shopChannel, setShopChannel] = useState<ShopChannel>('shipping')
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileShopOpen, setMobileShopOpen] = useState(false)
   const [glutenInfoOpen, setGlutenInfoOpen] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
   const glutenRef = useRef<HTMLDivElement>(null)
@@ -33,6 +157,10 @@ export default function Navigation() {
     document.addEventListener('mousedown', onClick)
     return () => document.removeEventListener('mousedown', onClick)
   }, [glutenInfoOpen])
+
+  useEffect(() => {
+    if (!mobileOpen) setMobileShopOpen(false)
+  }, [mobileOpen])
 
   const openMenu = (id: DropdownId) => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
@@ -248,10 +376,10 @@ export default function Navigation() {
                 >
                   <div className="bg-white border border-wire-pale shadow-sm min-w-[200px] py-2">
                     {[
-                      { label: 'Same day delivery', href: '#' },
+                      { label: 'Same day orders', href: '#' },
                       { label: 'Pre-orders', href: '/pre-orders' },
                       { label: 'Nationwide shipping', href: '/shipping' },
-                      { label: 'Catering & events', href: '/catering/order' },
+                      { label: 'Catering', href: '/catering/order' },
                     ].map(l => (
                       <Link key={l.label} to={l.href} onClick={() => setOpenDropdown(null)} className="block px-4 py-2 text-sm text-wire-dark hover:bg-wire-ghost">
                         {l.label}
@@ -287,47 +415,36 @@ export default function Navigation() {
             onMouseEnter={() => cancelClose('products')}
             onMouseLeave={scheduleClose}
           >
-            <div className="w-full px-6 py-8 flex gap-8">
-              <div className="flex gap-12 flex-1">
-                <div>
-                  <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">Shop by category</p>
-                  <ul className="space-y-2">
-                    {['All items', 'Bagels & breads', 'Cakes & sweets', 'Specials', 'Baking mixes'].map(l => (
-                      <li key={l}><Link to="/shipping" onClick={() => setOpenDropdown(null)} className="text-sm text-wire-dark hover:text-wire-black hover:underline">{l}</Link></li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">Seasonal specials</p>
-                  <ul className="space-y-2">
-                    <li><Link to="/shipping" onClick={() => setOpenDropdown(null)} className="text-sm text-wire-dark hover:text-wire-black hover:underline">All specials</Link></li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-wire-mid uppercase tracking-wider mb-3">Baking mixes</p>
-                  <ul className="space-y-2">
-                    <li>
-                      <Link
-                        to="/shipping?filter=baking-mixes"
-                        onClick={() => setOpenDropdown(null)}
-                        className="text-sm text-wire-dark hover:text-wire-black hover:underline"
+            <div className="max-w-[1440px] mx-auto px-6 py-8 flex gap-0 min-h-[300px]">
+              <div className="w-[260px] shrink-0 border-r border-wire-pale pr-4">
+                <div className="flex flex-col gap-0.5" role="tablist" aria-label="Shop by order type">
+                  {shopChannels.map((ch) => {
+                    const selected = shopChannel === ch.id
+                    return (
+                      <button
+                        key={ch.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={selected}
+                        onMouseEnter={() => setShopChannel(ch.id)}
+                        onFocus={() => setShopChannel(ch.id)}
+                        onClick={() => setShopChannel(ch.id)}
+                        className={`w-full text-left rounded-md px-3 py-2.5 transition-colors border-l-[3px] ${
+                          selected
+                            ? 'border-wire-black bg-wire-ghost text-wire-black'
+                            : 'border-transparent hover:bg-wire-pale text-wire-dark'
+                        }`}
                       >
-                        Shop baking mixes
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/where-to-buy"
-                        onClick={() => setOpenDropdown(null)}
-                        className="text-sm text-wire-dark hover:text-wire-black hover:underline"
-                      >
-                        Find in-store mixes
-                      </Link>
-                    </li>
-                  </ul>
+                        <span className="block text-sm font-semibold leading-tight">{ch.label}</span>
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
-              <div className="img-placeholder w-52 h-36 flex-shrink-0" />
+
+              <div className="flex-1 min-w-0 pl-8 lg:pl-12 flex flex-col">
+                <ShopMegaMenuBrowsePanel shopChannel={shopChannel} onPickLink={() => setOpenDropdown(null)} />
+              </div>
             </div>
           </div>
         )}
@@ -387,16 +504,74 @@ export default function Navigation() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             </div>
+            <div className="border-b border-wire-ghost">
+              <button
+                type="button"
+                onClick={() => setMobileShopOpen((o) => !o)}
+                className="flex w-full items-center justify-between py-3 text-sm font-medium text-wire-black"
+                aria-expanded={mobileShopOpen}
+              >
+                Shop
+                <svg
+                  className={`w-4 h-4 transition-transform ${mobileShopOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {mobileShopOpen && (
+                <div className="pb-4 space-y-6">
+                  {shopChannels.map((ch) => {
+                    const mixes = bakingMixesColumn(ch.id)
+                    return (
+                      <div key={ch.id}>
+                        <p className="text-[11px] font-semibold text-wire-mid uppercase tracking-wider mb-2">{ch.label}</p>
+                        <p className="text-[10px] font-semibold text-wire-mid uppercase tracking-wider mb-1.5">Shop by category</p>
+                        <ul className="mb-4 space-y-2 pl-0 border-l-2 border-wire-pale ml-1">
+                          {shopCategoryLinks(ch.id).map((l) => (
+                            <li key={l.label}>
+                              <Link
+                                to={l.to}
+                                onClick={() => setMobileOpen(false)}
+                                className="block pl-3 text-sm text-wire-dark py-1 hover:text-wire-black"
+                              >
+                                {l.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                        {mixes && (
+                          <>
+                            <p className="text-[10px] font-semibold text-wire-mid uppercase tracking-wider mb-1.5">{mixes.title}</p>
+                            <ul className="mb-4 space-y-2 pl-0 border-l-2 border-wire-pale ml-1">
+                              {mixes.links.map((l) => (
+                                <li key={l.label}>
+                                  <Link
+                                    to={l.to}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block pl-3 text-sm text-wire-dark py-1 hover:text-wire-black"
+                                  >
+                                    {l.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
             {[
-              { label: 'Shop', href: '/shipping' },
               { label: 'Locations', href: '/locations' },
               { label: 'About us', href: '/about' },
               { label: 'Gift card', href: '/gift-card' },
               { label: 'Contact us', href: '/contact' },
-              { label: 'Pre-orders', href: '/pre-orders' },
-              { label: 'Catering', href: '/catering' },
-              { label: 'Nationwide shipping', href: '/shipping' },
-            ].map(l => (
+            ].map((l) => (
               <Link key={l.label} to={l.href} onClick={() => setMobileOpen(false)} className="block py-3 border-b border-wire-ghost text-sm text-wire-dark">
                 {l.label}
               </Link>
